@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
+    // Admin routes limited to users with role Admin.
+});
+
+Route::group(['prefix' => 'admin'], function () {
+
+});
