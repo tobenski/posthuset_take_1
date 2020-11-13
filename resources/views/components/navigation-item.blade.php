@@ -11,7 +11,14 @@
         </div>
         @foreach($menu->children as $child)
 
-        <div x-show="selected == {{ $menu->order }}" class="pl-8 py-3">
+        <div x-show="selected == {{ $menu->order }}"
+            x-transition:enter="transition ease-out duration-1000 -ml-64"
+            x-transition:enter-start="transform translate-x-0"
+            x-transition:enter-end="transform translate-x-64 ml-0"
+            x-transition:leave="transition ease-in duration-1000 ml-0"
+            x-transition:leave-start="transform translate-x-0"
+            x-transition:leave-end="transform -translate-x-full"
+            class="pl-8 py-3">
             <a href="{{ $child->url }}" class="hover:font-semibold">
                 {{ $child->text }}
             </a>

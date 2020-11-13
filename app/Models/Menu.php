@@ -17,6 +17,7 @@ class Menu extends Model
         'text',
         'url',
         'order',
+        'parent_id',
     ];
 
 

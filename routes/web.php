@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Menus;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +27,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
 });
 
 Route::group(['prefix' => 'admin'], function () {
-
+    Route::get('menu', Menus::class);
 });
