@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Sidebar extends Component
 {
-    public $showSidebar = true;
+    public $showSidebar = false;
 
     protected $listeners = ['open-sidebar' => 'openSidebar', 'close-sidebar' => 'closeSidebar', 'toggle-sidebar' => 'toggleSidebar'];
 

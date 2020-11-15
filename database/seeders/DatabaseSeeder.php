@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('Password')
         ]);
         $user->addRole('admin');
-        $this->call(MenuSeeder::class);
+        $this->call([
+            MenuSeeder::class,
+            SlideSeeder::class,
+            ]);
     }
 }

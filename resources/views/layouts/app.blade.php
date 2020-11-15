@@ -25,13 +25,8 @@
             @livewire('sidebar')
             @livewire('sidebar-toggle')
         </div>
+        {{ $slot }}
 
-        <main class="h-screen overflow-y-auto w-full flex justify-center bg-cover"
-              style="background-image:url({{ $bgImage }})">
-                <div class="w-10/12 py-12 min-h-screen">
-                    {{ $slot }}
-                </div>
-        </main>
 
 
         @stack('modals')
