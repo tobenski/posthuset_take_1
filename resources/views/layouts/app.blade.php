@@ -12,11 +12,13 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
         <!-- Styles -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         @livewireStyles
 
         <!-- Scripts -->
+
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
         <script src="https://kit.fontawesome.com/c4b1104435.js" crossorigin="anonymous"></script>
     </head>

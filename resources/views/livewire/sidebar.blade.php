@@ -1,4 +1,4 @@
-<nav class="absolute flex flex-col w-screen md:w-64 z-20 top-0 left-0 h-screen bg-navigation-bg shadow-2xl overflow-y-auto"
+<nav class="absolute flex flex-col w-screen md:w-64 z-50 top-0 left-0 h-screen bg-navigation-bg shadow-2xl overflow-y-auto"
     x-data="{ open: @entangle('showSidebar') }"
     x-cloak
     x-show = "open"

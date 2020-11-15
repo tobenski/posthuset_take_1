@@ -10,6 +10,9 @@ module.exports = {
 
     theme: {
         extend: {
+            zIndex: {
+                '1000': '1000',
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },

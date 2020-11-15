@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Forside;
 use App\Http\Livewire\Menus;
+use App\Http\Livewire\Test;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', Forside::class)->name('home');
+Route::get('/test', Test::class)->name('test');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

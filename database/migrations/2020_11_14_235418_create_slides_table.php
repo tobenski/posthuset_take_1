@@ -19,6 +19,7 @@ class CreateSlidesTable extends Migration
             $table->text('content');
             $table->string('page');
             $table->string('image');
+            $table->boolean('online')->default(false);
 
             $table->softDeletes();
             $table->timestamps();
