@@ -1,52 +1,58 @@
 <!-- https://swiperjs.com/ -->
-<div class="swiper-home w-full h-full">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-        <!-- Slides -->
-        @foreach($slides as $key => $slide)
-            <div class="swiper-slide swiper-lazy bg-cover z-0"
-                data-background="{{ $slide->image }}"
-                style="background-image: url({{ $slide->image }})">
-                <!-- <div class="swiper-lazy-preloader"></div> -->
-                <div class="flex flex-col items-center justify-center h-full w-full">
-                    {!! $slide->content !!}
-                </div>
-
-            </div>
-        @endforeach
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-
-    <!-- If we need navigation buttons -->
-    <!-- <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>-->
-
-    <!-- If we need scrollbar -->
-    <!-- <div class="swiper-scrollbar"></div> -->
-</div>
+<!-- https://codepen.io/knud-plougmann-rish-j/pen/RwROpjm -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-    var swiper = new Swiper('.swiper-home', {
-        spaceBetween: 0,
-        centeredSlides: true,
-        loop: true,
-        effect: 'fade',
-        speed: 1000,
-        grabCursor: true,
-        preloadImages: true,
-        lazy: false,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: true,
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-</script>
+<div x-data="{ swiper: null, show: false }"
+     x-init="() => {
+        swiper = new Swiper($refs.container, {
+            spaceBetween: 0,
+            centeredSlides: true,
+            loop: true,
+            effect: 'fade',
+            speed: 1000,
+            grabCursor: true,
+            preloadImages: true,
+            updateOnImagesReady: true,
+            lazy: false,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            on: {
+            transitionStart: () => {
+                show = false;
+            },
+            transitionEnd: () => {
+                show = true;
+            }
+            },
+        });
+        setTimeout( () => {
+            show = true;
+        }, 1000);
+    }"
+    class="w-full h-full">
+    <div class="swiper-container w-full h-screen" x-ref="container">
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            @foreach($slides as $key => $slide)
+                <div class="swiper-slide swiper-lazy bg-cover z-0 bg-center"
+                    data-background="{{ $slide->image }}"
+                    @if($slide->duration)
+                    data-swiper-autoplay="{{ $slide->duration }}"
+                    @endif
+                    style="background-image: url({{ $slide->image }})"
+                    id="slide_{{ $key }}">
+
+                    <div class="flex flex-col items-center justify-center h-full w-full">
+                        {!! $slide->content !!}
+                    </div>
+
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>

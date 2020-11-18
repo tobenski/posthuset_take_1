@@ -3,10 +3,13 @@
 namespace App\Http\Livewire;
 
 use App\Models\Slide;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use SebastianBergmann\Environment\Console;
 
 class Forside extends Component
 {
+    public $currentSlide = 0;
     public $counter = 0;
     public $bgImage;
     public $images = array(

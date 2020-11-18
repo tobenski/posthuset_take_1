@@ -15,6 +15,7 @@ module.exports = {
             },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sche: ['Scheherazade', 'Roboto']
             },
             colors: {
                 'navigation-bg': {
@@ -27,7 +28,31 @@ module.exports = {
                     'default': colors.black,
                     'dark': colors.gray[100],
                 }
-            }
+            },
+            transitionDuration: {
+                '0': '0ms',
+                '400': '400ms',
+                '600': '600ms',
+                '800': '800ms',
+                '900': '900ms',
+                '1200': '1200ms',
+                '1300': '1300ms',
+                '1400': '1400ms',
+                '1500': '1500ms',
+                '1600': '1600ms',
+                '1700': '1700ms',
+                '1800': '1800ms',
+                '1900': '1900ms',
+                '2000': '2000ms',
+                '2500': '2500ms',
+                '3000': '3000ms',
+                '3500': '3500ms',
+                '4000': '4000ms',
+                '4500': '4500ms',
+                '5000': '5000ms',
+                '7500': '7500ms',
+                '10000': '10000ms',
+            },
         },
     },
 
