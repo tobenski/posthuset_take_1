@@ -15,5 +15,6 @@ class Slide extends Model
         'title',
         'content',
         'page',
+        'duration',
     ];
 }
