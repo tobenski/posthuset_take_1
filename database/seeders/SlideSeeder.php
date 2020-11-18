@@ -25,7 +25,7 @@ class SlideSeeder extends Seeder
                     x-transition:leave-start="opacity-0 transform scale-100"
                     x-transition:leave-end="opacity-0 transform scale-90"
                     x-cloak
-                    class="flex flex-col rounded-xl bg-white bg-opacity-75 w-auto py-8 px-16">
+                    class="flex flex-col rounded-xl bg-white bg-opacity-75 w-10/12 md:w-auto py-8 px-2 md:px-6 lg:px-16">
                     <h1 x-show.immediate="show"
                         x-transition:enter="transition ease-out duration-1000 origin-left"
                         x-transition:enter-start="transform -translate-x-64"
@@ -34,21 +34,15 @@ class SlideSeeder extends Seeder
                         x-transition:leave-start="opacity-0 transform scale-100"
                         x-transition:leave-end="opacity-0 transform scale-90"
                         x-cloak
-                        class="text-4xl uppercase font-extrabold text-center w-full font-sche">
+                        class="text-2xl md:text-4xl uppercase font-extrabold text-center w-full font-sche">
                         Åbningstider
                     </h1>
-                    <p x-show="show"
-                        x-transition:enter="transition ease-out duration-1500"
-                        x-transition:enter-start="opacity-0 transform scale-90"
-                        x-transition:enter-end="opacity-100 transform scale-100"
-                        x-transition:leave="transition ease-in duration-0"
-                        x-transition:leave-start="opacity-0 transform"
-                        x-transition:leave-end="opacity-0 transform"
+                    <p x-show.transition.in.duration.1500ms.origin.left.immediate="show"
                         x-cloak
                         class="w-full text-center leading-loose">
-                        <span class="font-bold text-xl">Tirsdag - Lørdag:</span><br />
-                        <span class="">11.30 - 16.30 & 17.30 - 20.30</span><br />
-                        <span class="italic text-sm">(20.30 er sidste mulighed for ankomst, vi lukker først når alle er færdige)</span>
+                        <span class="font-bold text-base md:text-xl">Tirsdag - Lørdag:</span><br />
+                        <span class="text-sm md:text-base">11.30 - 16.30 & 17.30 - 20.30</span><br />
+                        <span class="italic text-xs md:text-sm">20.30 er sidste mulighed for ankomst, vi lukker først når alle er færdige</span>
                     </p>
                 </div>
             ',

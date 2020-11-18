@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Livewire\Forside;
-use App\Http\Livewire\Menus;
+use App\Http\Livewire\Admin\Menus;
 use App\Http\Livewire\Test;
 use Illuminate\Support\Facades\Route;
 

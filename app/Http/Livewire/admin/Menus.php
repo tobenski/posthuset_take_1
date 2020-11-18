@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Menu;
 use Livewire\Component;
@@ -14,7 +14,7 @@ class Menus extends Component
     {
         $this->menus = Menu::all();
 
-        return view('livewire.menus')
+        return view('livewire.admin.menus')
                ->layout('layouts.admin');
     }
 
