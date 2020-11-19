@@ -49,6 +49,7 @@ class SlideSeeder extends Seeder
             'page' => 'home',
             'image' => 'https://det-gamle-posthus.dk/wp-content/uploads/2020/03/MG_6554-scaled.jpg',
             'online' => true,
+            'order' => 1,
         ]);
 
         Slide::create([
@@ -70,6 +71,7 @@ class SlideSeeder extends Seeder
             'image' => 'https://hideaways.imgix.net/frankrig/provence-alpes-cote-dazur/nice/Nice,-beach,-coast.jpg',
             'online' => true,
             'duration' => 10000,
+            'order' => 4,
         ]);
 
         Slide::create([
@@ -90,6 +92,7 @@ class SlideSeeder extends Seeder
             'page' => 'home',
             'image' => 'https://lp-cms-production.imgix.net/2019-06/3cb45f6e59190e8213ce0a35394d0e11-nice.jpg',
             'online' => true,
+            'order' => 3,
         ]);
 
         Slide::create([
@@ -110,6 +113,7 @@ class SlideSeeder extends Seeder
             'page' => 'home',
             'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTmTP6yaQIPdO-RGRtJY71VxYzYdFwtsGAVgw&usqp=CAU',
             'online' => true,
+            'order' => 2,
         ]);
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43d0f2a5ca6dd5615663048ae0829c46",
+    "content-hash": "8e4e9864a259a50713064bcaeb72d8a9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -607,6 +607,54 @@
                 "source": "https://github.com/fideloper/TrustedProxy/tree/4.4.1"
             },
             "time": "2020-10-22T13:48:01+00:00"
+        },
+        {
+            "name": "flyhjaelp/laravel-eloquent-orderable",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Flyhjaelp/laravel-eloquent-orderable.git",
+                "reference": "993d10d04455425b7546544a9f6208a63aeef75c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Flyhjaelp/laravel-eloquent-orderable/zipball/993d10d04455425b7546544a9f6208a63aeef75c",
+                "reference": "993d10d04455425b7546544a9f6208a63aeef75c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.8",
+                "phpunit/phpunit": "^8.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Flyhjaelp\\LaravelEloquentOrderable\\EloquentOrderableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Flyhjaelp\\LaravelEloquentOrderable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philip Brechmann",
+                    "email": "pb@milkwood.dk"
+                }
+            ],
+            "description": "Make your Eloquent models orderable by using the orderable trait on them. Which automatically updates the order of all other models within it's group when the order of a current model is updated or a new model insereted or deleted.",
+            "support": {
+                "issues": "https://github.com/Flyhjaelp/laravel-eloquent-orderable/issues",
+                "source": "https://github.com/Flyhjaelp/laravel-eloquent-orderable/tree/v1.2.0"
+            },
+            "time": "2019-04-26T12:56:10+00:00"
         },
         {
             "name": "fruitcake/laravel-cors",

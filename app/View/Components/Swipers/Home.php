@@ -15,7 +15,7 @@ class Home extends Component
      */
     public function __construct()
     {
-        $this->slides = Slide::where('page', 'home')->where('online',true)->get();
+        $this->slides = Slide::where('page', 'home')->where('online',true)->orderBy('order', 'asc')->get();
     }
 
     /**

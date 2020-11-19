@@ -21,6 +21,7 @@ class CreateSlidesTable extends Migration
             $table->string('image');
             $table->boolean('online')->default(false);
             $table->integer('duration')->nullable();
+            $table->unsignedInteger('order')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

@@ -22,6 +22,8 @@
                         <th class="px-4 py-2">Page</th>
                         <th class="px-4 py-2">Duration</th>
                         <th class="px-4 py-2">Content</th>
+                        <th class="px-2 py-2 w-12">Online</th>
+                        <th class="px-2 py-2 w-12">Order</th>
                         <th class="px-4 py-2">Action</th>
                     </tr>
                 </thead>
@@ -35,6 +37,12 @@
                             {{ $slide->duration ? $slide->duration : 'default' }}</td>
                         <td class="border px-4 py-2">
                             {{ substr($slide->content, 0, 50) }}
+                        </td>
+                        <td class="border px-4 py-2">
+                            <input type="checkbox" @if($slide->online) checked @endif readonly />
+                        </td>
+                        <td class="border px-4 py-2">
+                            {{ $slide->order }}
                         </td>
                         <td class="border px-4 py-2">
                             <button wire:click="edit({{ $slide->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>

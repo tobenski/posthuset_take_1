@@ -1,5 +1,7 @@
 <?php
 
+// Lav order by
+// Lav online prob
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Slide;
@@ -7,8 +9,9 @@ use Livewire\Component;
 
 class Slides extends Component
 {
-    public $slides, $title, $content, $page, $duration, $slide_id;
+    public $slides, $title, $content, $page, $duration, $order, $slide_id;
     public $isOpen = false;
+    public $online = false;
 
     public function render()
     {
@@ -40,6 +43,8 @@ class Slides extends Component
         $this->content = '';
         $this->page = '';
         $this->duration = null;
+        $this->online = false;
+        $this->order = null;
     }
 
     public function store()
@@ -49,6 +54,8 @@ class Slides extends Component
             'content' => 'required',
             'page' => 'required',
             'duration' => 'nullable',
+            'online' => 'boolean',
+            'order' => 'nullable',
         ]);
 
         Slide::updateOrCreate(['id' => $this->slide_id], [
@@ -56,6 +63,8 @@ class Slides extends Component
             'content' => $this->content,
             'page' => $this->page,
             'duration' => $this->duration,
+            'online' => $this->online,
+            'order' => $this->order,
         ]);
 
         session()->flash('message', $this->slide_id ? 'Slide Updated Successfully!!' : 'Slide Created Successfully!!');
@@ -72,6 +81,8 @@ class Slides extends Component
         $this->content = $slide->content;
         $this->page = $slide->page;
         $this->duration = $slide->duration;
+        $this->online = $slide->online;
+        $this->order = $slide->order;
 
         $this->openModal();
     }
