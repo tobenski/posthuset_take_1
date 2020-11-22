@@ -34,12 +34,13 @@
             show = true;
         }, 1000);
     }"
-    class="w-full h-full">
-    <div class="swiper-container w-full h-screen" x-ref="container">
+    class="w-full h-72">
+    <div class="swiper-container w-full h-full" x-ref="container">
+        <div class="swiper-pagination"></div>
         <div class="swiper-wrapper">
             <!-- Slides -->
             @foreach($slides as $key => $slide)
-                <div class="swiper-slide swiper-lazy bg-cover z-0 bg-center"
+                <div class="swiper-slide swiper-lazy bg-cover z-0 bg-center p-6"
                     data-background="{{ $slide->image }}"
                     @if($slide->duration)
                     data-swiper-autoplay="{{ $slide->duration }}"
@@ -54,5 +55,6 @@
                 </div>
             @endforeach
         </div>
+
     </div>
 </div>

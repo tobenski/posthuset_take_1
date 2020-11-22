@@ -23,17 +23,20 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
         <script src="https://kit.fontawesome.com/c4b1104435.js" crossorigin="anonymous"></script>
     </head>
-    <body class="font-sans antialiased flex overflow-hidden">
-        <div class="bg-transparent absolute">
+    <body class="font-sans antialiased flex overflow-auto">
+        <div class="bg-transparent fixed z-20">
             @livewire('sidebar')
             @livewire('sidebar-toggle')
         </div>
+
         {{ $slot }}
+
 
 
 
         @stack('modals')
 
         @livewireScripts
+
     </body>
 </html>

@@ -1,0 +1,7 @@
+.stick {
+    @apply fixed top-0 shadow-2xl;
+  }
+
+.stick+ #content {
+    @apply pt-24;
+  }

@@ -2,6 +2,10 @@
     display: none;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .progress {
 	animation:progress;
 	animation-iteration-count:1;
