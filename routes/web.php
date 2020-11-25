@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Forside;
 use App\Http\Livewire\Admin\Menus;
+use App\Http\Livewire\Admin\Pages;
 use App\Http\Livewire\Admin\Slides;
 use App\Http\Livewire\Test;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +32,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('menu', Menus::class);
     Route::get('slide', Slides::class);
+
+    Route::get('page', Pages::class);
 });

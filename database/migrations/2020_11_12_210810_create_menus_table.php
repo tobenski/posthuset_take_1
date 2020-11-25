@@ -21,6 +21,10 @@ class CreateMenusTable extends Migration
 
             $table->foreignId('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('menus');
+
+            $table->foreignId('page_id')->nullable();
+            $table->foreign('page_id')->references('id')->on('pages');
+
             $table->timestamps();
         });
     }

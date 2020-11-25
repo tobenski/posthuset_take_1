@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MenuSeeder::class,
             SlideSeeder::class,
+            PageSeeder::class,
             ]);
     }
 }
