@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\Menukort;
 use App\Http\Livewire\Forside;
 use App\Http\Livewire\Admin\Menus;
 use App\Http\Livewire\Admin\Pages;
@@ -34,4 +35,5 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('slide', Slides::class);
 
     Route::get('page', Pages::class);
+    Route::get('menukort', Menukort::class);
 });
