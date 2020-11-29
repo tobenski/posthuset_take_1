@@ -18,7 +18,7 @@
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="px-4 py-2 w-20">#</th>
-                        <th class="px-4 py-2">{{ __('Title') }}</th>
+                        <th class="px-4 py-2">{{ __('Name') }}</th>
                         <th class="px-4 py-2">{{ __('Content') }}</th>
                         <th class="px-4 py-2 w-20">{{ __('Online') }}</th>
                         <th class="px-4 py-2">{{ __('Slug') }}</th>
@@ -29,7 +29,7 @@
                     @foreach($pages as $page)
                     <tr>
                         <td class="border px-4 py-2">{{ $page->id }}</td>
-                        <td class="border px-4 py-2">{{ $page->title }}</td>
+                        <td class="border px-4 py-2">{{ $page->name }}</td>
                         <td class="border px-4 py-2">
                             {{ substr($page->content, 0, 50) }}
                         </td>

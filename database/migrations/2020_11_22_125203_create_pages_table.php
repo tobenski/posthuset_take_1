@@ -16,7 +16,7 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
-            $table->string('title');
+            $table->string('name');
             $table->text('content')->default('');
             $table->boolean('online')->default(false);
 

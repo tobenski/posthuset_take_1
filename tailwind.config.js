@@ -27,7 +27,15 @@ module.exports = {
                     'light': colors.gray[900],
                     'default': colors.black,
                     'dark': colors.gray[100],
-                }
+                },
+                'home-box-text': {
+                    'light': colors.white,
+                    'default': colors.gray[200],
+                    'dark': colors.gray[800],
+                },
+                'primary': colors.blue,
+                'text': colors.white,
+
             },
             transitionDuration: {
                 '0': '0ms',

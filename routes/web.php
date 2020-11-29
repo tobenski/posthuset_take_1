@@ -5,6 +5,7 @@ use App\Http\Livewire\Forside;
 use App\Http\Livewire\Admin\Menus;
 use App\Http\Livewire\Admin\Pages;
 use App\Http\Livewire\Admin\Slides;
+use App\Http\Livewire\Menukort as LivewireMenukort;
 use App\Http\Livewire\Test;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Forside::class)->name('home');
 Route::get('/test', Test::class)->name('test');
+Route::get('/menukort/{type?}', LivewireMenukort::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

@@ -17,7 +17,7 @@ class Page extends Model
     protected $table = 'pages';
 
     protected $fillable = [
-        'title',
+        'name',
         'slug',
         'content',
         'online',
@@ -29,7 +29,7 @@ class Page extends Model
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('title')
+            ->generateSlugsFrom('name')
             ->saveSlugsTo('slug')
             ->doNotGenerateSlugsOnUpdate();
     }

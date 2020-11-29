@@ -1,0 +1,9 @@
+.info-box {
+    @apply w-full h-full overflow-hidden px-10 flex items-center justify-center mt-6;
+}
+
+@media(min-with: 768px) {
+    .info-box {
+        @apply w-1/3 mt-0;
+    }
+}

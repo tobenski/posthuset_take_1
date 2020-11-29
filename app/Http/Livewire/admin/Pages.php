@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Pages extends Component
 {
-    public $pages, $title, $content, $slug, $page_id, $online;
+    public $pages, $name, $content, $slug, $page_id, $online;
     public $isOpen;
 
     public function render()
@@ -36,7 +36,7 @@ class Pages extends Component
 
     private function resetInputFields()
     {
-        $this->title = '';
+        $this->name = '';
         $this->content = '';
         $this->slug = '';
         $this->online = false;
@@ -46,13 +46,13 @@ class Pages extends Component
     public function store()
     {
         $this->validate([
-            'title' => 'required',
+            'name' => 'required',
             'content' => 'required',
             'online' => 'boolean',
         ]);
 
         Page::updateOrCreate(['id' => $this->page_id], [
-            'title' => $this->title,
+            'name' => $this->name,
             'content' => $this->content,
             'online' => $this->online,
         ]);
@@ -67,7 +67,7 @@ class Pages extends Component
     {
         $page = Page::findOrFail($id);
         $this->page_id = $id;
-        $this->title = $page->title;
+        $this->name = $page->name;
         $this->content = $page->content;
         $this->online = $page->online;
 

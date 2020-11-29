@@ -14,10 +14,12 @@ class PageSeeder extends Seeder
      */
     public function run()
     {
-        Page::create([
-            'title' => 'Forside',
+        $home = Page::create([
+            'name' => 'Forside',
             'content' => 'TEST',
             'online' => true,
         ]);
+        $home->slug = '';
+        $home->save();
     }
 }

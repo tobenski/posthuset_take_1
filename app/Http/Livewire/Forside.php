@@ -18,6 +18,7 @@ class Forside extends Component
         $this->slides = Slide::all();
         $this->page = Page::where('slug', 'forside')->first();
     }
+
     public function render()
     {
         return view('livewire.forside');

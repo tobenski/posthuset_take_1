@@ -1,13 +1,13 @@
-<nav class="absolute flex flex-col w-screen md:w-64 z-50 top-0 left-0 h-screen bg-navigation-bg shadow-2xl overflow-y-auto"
+<nav class="absolute flex flex-col w-screen md:w-64 z-50 top-0 left-0 h-screen bg-navigation-bg shadow-2xl overflow-y-auto md:rounded-r-xl"
     x-data="{ open: @entangle('showSidebar') }"
     x-cloak
     x-show = "open"
     x-transition:enter="transition ease-out duration-1000 -ml-64"
-    x-transition:enter-start="transform translate-x-0"
-    x-transition:enter-end="transform translate-x-64 ml-0"
+    x-transition:enter-start="transform translate-x-0  opacity-0"
+    x-transition:enter-end="transform translate-x-64 ml-0  opacity-100"
     x-transition:leave="transition ease-in duration-1000 ml-0"
-    x-transition:leave-start="transform translate-x-0"
-    x-transition:leave-end="transform -translate-x-full"
+    x-transition:leave-start="transform translate-x-0  opacity-100"
+    x-transition:leave-end="transform -translate-x-full opacity-0"
     @click.away="open=!open">
 
     <div class="flex items-end pt-4 md:pt-6 pr-4 md:pr-6 w-full justify-end">
