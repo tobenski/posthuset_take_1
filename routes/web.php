@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PagesController;
 use App\Http\Livewire\Admin\Menukort;
 use App\Http\Livewire\Forside;
 use App\Http\Livewire\Admin\Menus;
@@ -32,10 +33,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
     // Admin routes limited to users with role Admin.
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('menu', Menus::class);
     Route::get('slide', Slides::class);
 
     Route::get('page', Pages::class);
     Route::get('menukort', Menukort::class);
+
+    Route::resources([
+        'pages' => PagesController::class,
+    ]);
 });

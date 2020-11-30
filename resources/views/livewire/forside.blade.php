@@ -1,3 +1,6 @@
+@php
+    $extra = json_decode($page->extra);
+@endphp
 <main class="w-screen h-screen max-h-screen">
     <div id="overlay" class="absolute pointer-events-none top-0 left-0 w-full h-full overflow-hidden">
         <video preload="auto" autoplay playsinline muted loop class="w-full h-full object-cover object-center">
@@ -5,7 +8,7 @@
         </video>
     </div>
     <div id="home-content" class="flex flex-col sm:flex-row h-full relative w-full">
-        @for($i = 0; $i < 3; $i++)
+        @for($i = 0; $i < count($extra->boxes); $i++)
         <div id="restaurant-box" class="w-full h-full overflow-hidden px-10 flex items-center justify-center
                                         sm:w-1/3 sm:mt-0
                                         md:px-2
@@ -17,14 +20,14 @@
                         <h3 class="text-4xl font-bold font-sche leading-none
                                    sm:text-4xl
                                    lg:text-5xl">
-                            Restaurant
+                            {{ $extra->boxes[$i]->title }}
                         </h3>
-                        <p class="mb-6 text-md sm:text-lg">Velkommen i restauranten. <br> Her er plads til en lille beskrivelse.</p>
+                        <p class="mb-6 text-md sm:text-lg">{{ $extra->boxes[$i]->content }}</p>
                         <a href="#" class="font-bold py-3 px-4 rounded-lg bg-primary-500 text-text text-md
                                            sm:text-lg
                                            lg:px-5
                                            hover:bg-primary-700">
-                            Se menukort her
+                            {{ $extra->boxes[$i]->button }}
                         </a>
                     </div>
                 </div>

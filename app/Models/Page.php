@@ -19,8 +19,16 @@ class Page extends Model
     protected $fillable = [
         'name',
         'slug',
-        'content',
         'online',
+        'title',
+        'description',
+        'keywords',
+        'og_title',
+        'og_description',
+        'og_url',
+        'og_type',
+        'og_image',
+        'extra',
     ];
 
     /**

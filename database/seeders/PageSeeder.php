@@ -16,7 +16,6 @@ class PageSeeder extends Seeder
     {
         $home = Page::create([
             'name' => 'Forside',
-            'content' => 'TEST',
             'online' => true,
         ]);
         $home->slug = '';

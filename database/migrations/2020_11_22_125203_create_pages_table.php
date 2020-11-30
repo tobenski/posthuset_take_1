@@ -17,8 +17,23 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->string('slug');
             $table->string('name');
-            $table->text('content')->default('');
             $table->boolean('online')->default(false);
+
+            //SEO META
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->text('keywords')->nullable();
+
+            //OpenGraph
+            $table->string('og_title')->nullable();
+            $table->text('og_description')->nullable();
+            $table->string('og_url')->nullable();
+            $table->string('og_type')->nullable();
+            $table->string('og_image')->nullable();
+
+            // Extra
+            $table->json('extra')->nullable();
+
 
             $table->softDeletes();
             $table->timestamps();
