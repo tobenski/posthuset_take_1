@@ -20,15 +20,6 @@ class Page extends Model
         'name',
         'slug',
         'online',
-        'title',
-        'description',
-        'keywords',
-        'og_title',
-        'og_description',
-        'og_url',
-        'og_type',
-        'og_image',
-        'extra',
     ];
 
     /**
@@ -42,13 +33,8 @@ class Page extends Model
             ->doNotGenerateSlugsOnUpdate();
     }
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
+    public function seo()
     {
-        return 'slug';
+        return $this->morphOne(Seo::class, 'seoable');
     }
 }

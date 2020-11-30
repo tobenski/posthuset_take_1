@@ -31,15 +31,15 @@ class Forside extends Component
 
     private function SEO()
     {
-        $this->page->title ? SEOMeta::setTitle($this->page->title) : false;
-        $this->page->description ? SEOMeta::setDescription($this->page->description) : false;
-        $this->page->keywords ? SEOMeta::addKeyword(explode(',', $this->page->keywords)) : false;
+        $this->page->seo->title ? SEOMeta::setTitle($this->page->seo->title) : false;
+        $this->page->description ? SEOMeta::setDescription($this->page->seo->description) : false;
+        $this->page->keywords ? SEOMeta::addKeyword(explode(',', $this->page->seo->keywords)) : false;
 
-        $this->page->og_title ? OpenGraph::setTitle($this->page->og_title) : false;
-        $this->page->og_description ? OpenGraph::setDescription($this->page->og_description) : false;
-        $this->page->og_url ? OpenGraph::setUrl($this->page->og_url) : false;
-        $this->page->og_type ? OpenGraph::addProperty('type', $this->page->og_type) : false;
-        $this->page->og_image ? OpenGraph::addImage($this->page->og_image) : false;
+        $this->page->og_title ? OpenGraph::setTitle($this->page->seo->og_title) : false;
+        $this->page->og_description ? OpenGraph::setDescription($this->page->seo->og_description) : false;
+        $this->page->og_url ? OpenGraph::setUrl($this->page->seo->og_url) : false;
+        $this->page->og_type ? OpenGraph::addProperty('type', $this->page->seo->og_type) : false;
+        $this->page->og_image ? OpenGraph::addImage($this->page->seo->og_image) : false;
     }
 
 

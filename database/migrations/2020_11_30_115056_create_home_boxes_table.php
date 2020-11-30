@@ -18,6 +18,7 @@ class CreateHomeBoxesTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('button');
+            $table->string('link');
             $table->boolean('online');
 
             $table->softDeletes();

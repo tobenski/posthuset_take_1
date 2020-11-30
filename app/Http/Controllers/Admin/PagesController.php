@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use App\Models\Seo;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -50,12 +51,13 @@ class PagesController extends Controller
             'og_url' => 'nullable|string',
             'og_type' => 'nullable|string',
             'og_image' => 'nullable|string',
-            'extra' => 'nullable|string',
         ]);
 
         Page::create([
             'name' => $request->name,
             'online' => $request->online == 'on' ? true : false,
+        ]);
+        Seo::create([
             'title' => $request->title,
             'description' => $request->description,
             'keywords' => $request->keywords,
@@ -64,7 +66,6 @@ class PagesController extends Controller
             'og_url' => $request->og_url,
             'og_type' => $request->og_type,
             'og_image' => $request->og_image,
-            'extra' => $request->extra != '' ? json_encode($request->extra) : null,
         ]);
 
         session()->flash('message', 'Page created successfully');
@@ -92,6 +93,9 @@ class PagesController extends Controller
     public function edit($id)
     {
         $page = Page::where('id', $id)->first();
+        if(!$page->seo) {
+            $page->seo()->create();
+        }
         return view('admin.pages.edit')->with('page', $page);
     }
 
@@ -115,13 +119,14 @@ class PagesController extends Controller
             'og_url' => 'nullable|string',
             'og_type' => 'nullable|string',
             'og_image' => 'nullable|string',
-            'extra' => 'nullable|string',
         ]);
         $page = Page::where('id', $id)->first();
         //dd($request->extra);
         $page->update([
             'name' => $request->name,
             'online' => $request->online == 'on' ? true : false,
+        ]);
+        $page->seo->update([
             'title' => $request->title,
             'description' => $request->description,
             'keywords' => $request->keywords,
@@ -130,7 +135,6 @@ class PagesController extends Controller
             'og_url' => $request->og_url,
             'og_type' => $request->og_type,
             'og_image' => $request->og_image,
-            'extra' => $request->extra,// != '' ? json_encode($request->extra) : null,
         ]);
         $page->save();
 

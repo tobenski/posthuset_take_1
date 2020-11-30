@@ -41,12 +41,14 @@ class HomeBoxesController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'button' => 'required|string',
+            'link' => 'required|url',
         ]);
 
         $box = HomeBoxes::create([
             'title' => $request->title,
             'content' => $request->content,
             'button' => $request->button,
+            'link' => $request->link,
             'online' => $request->online == 'on' ? true : false,
         ]);
 
@@ -91,12 +93,14 @@ class HomeBoxesController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'button' => 'required|string',
+            'link' => 'required|url',
         ]);
 
         $homebox->update([
             'title' => $request->title,
             'content' => $request->content,
             'button' => $request->button,
+            'link' => $request->link,
             'online' => $request->online == 'on' ? true : false,
         ]);
 

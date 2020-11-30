@@ -58,11 +58,6 @@
                             <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="og_image" name="og_image" placeholder="{{ __('Enter Iamge url') }}" value="{{ old('og_image') }}">
                             @error('og_image') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="mb-4">
-                            <label for="extra" class="block text-gray-700 text-sm font-bold mb-2">{{ __('Extra') }}:</label>
-                            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="extra" name="extra" rows="10">{{ old('extra') }}</textarea>
-                            @error('extra') <span class="text-red-500">{{ $message }}</span>@enderror
-                        </div>
                         <div class="flex items-center justify-between">
                             <a href="{{ route('admin.pages.index') }}" class="btn btn-red">Tilbage</a>
                             <button type="submit" class="btn btn-primary">Gem</button>

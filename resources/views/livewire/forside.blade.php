@@ -4,13 +4,16 @@
             <source src="https://detgamleposthusvideo.s3.eu-north-1.amazonaws.com/front.mp4" type="video/mp4">
         </video>
     </div>
-    <div id="home-content" class="flex flex-col sm:flex-row h-full relative w-full">
+    <div id="home-header" class="flex w-full items-center justify-center relative mt-8">
+        <h1 class="text-6xl font-sche text-white">Det Gamle Posthus</h1>
+    </div>
+    <div id="home-content" class="flex flex-col sm:flex-row h-full relative w-full justify-evenly">
         @foreach($boxes as $box)
-            <div id="restaurant-box" class="w-full h-full overflow-hidden px-10 flex items-center justify-center
-                                            sm:w-1/{{ count($boxes) }} sm:mt-0
+            <div class="w-full h-full overflow-hidden px-10 flex items-center justify-center
+                                            sm:w-1/{{ count($boxes) }} sm:mt-0 sm:max-w-1/3
                                             md:px-2
-                                            lg:px-10 lg:items-start lg:pt-1/4">
-                <a href="#" class="bg-transparent text-home-box-text">
+                                            lg:pr-2 lg:pl-20 lg:items-start lg:pt-1/6">
+                <a href="{{ $box->link }}" class="bg-transparent text-home-box-text">
                     <div class="flex w-full items-start justi mb-3">
                         <i class="fas fa-arrow-right text-2xl pt-4 lg:pt-2 pr-3 bounce"></i>
                         <div class="">

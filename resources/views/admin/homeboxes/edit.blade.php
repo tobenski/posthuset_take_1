@@ -50,6 +50,18 @@
                             />
                             @error('button') <span class="text-red-500">{{ $message }}</span>@enderror
                         </label>
+                        <label class="block">
+                            <span class="text-gray-700">{{ __('Link') }}</span>
+                            <input
+                                type="text"
+                                class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                placeholder="{{ __('Enter Button Text') }}"
+                                value="{{ $box->link }}"
+                                name="link"
+                                id="link"
+                            />
+                            @error('link') <span class="text-red-500">{{ $message }}</span>@enderror
+                        </label>
                         <div class="block">
                             <div class="mt-2">
                                 <div>

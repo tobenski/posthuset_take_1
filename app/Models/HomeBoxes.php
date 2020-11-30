@@ -17,6 +17,7 @@ class HomeBoxes extends Model
         'title',
         'content',
         'button',
+        'link',
         'online',
     ];
 
