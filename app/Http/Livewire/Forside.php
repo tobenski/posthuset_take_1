@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\HomeBoxes;
 use App\Models\Page;
 use App\Models\Slide;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -13,10 +14,11 @@ use SebastianBergmann\Environment\Console;
 class Forside extends Component
 {
     public $page;
+    public $boxes;
 
     public function mount()
     {
-
+        $this->boxes = HomeBoxes::where('online', true)->get();
         $this->page = Page::where('slug', '')->first();
         $this->SEO();
 

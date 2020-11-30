@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeBoxesController;
 use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\RouteController;
 use App\Http\Livewire\Admin\Menukort;
 use App\Http\Livewire\Forside;
 use App\Http\Livewire\Admin\Menus;
@@ -21,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Forside::class)->name('home');
-Route::get('/test', Test::class)->name('test');
-Route::get('/menukort/{type?}', LivewireMenukort::class);
+
+
+Route::get('/menukort/{type?}', LivewireMenukort::class)->name('menukort');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -42,5 +44,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::resources([
         'pages' => PagesController::class,
+        'homebox' => HomeBoxesController::class,
     ]);
 });
+
+Route::get('/test', Test::class)->name('test');
+Route::get('/', Forside::class)->name('home');
