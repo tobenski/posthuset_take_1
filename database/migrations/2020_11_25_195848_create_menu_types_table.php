@@ -17,6 +17,7 @@ class CreateMenuTypesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('time');
+            $table->string('notes');
 
 
             $table->softDeletes();

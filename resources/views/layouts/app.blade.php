@@ -22,6 +22,7 @@
 
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
         <script src="https://kit.fontawesome.com/c4b1104435.js" crossorigin="anonymous"></script>
+        @yield('scripts')
     </head>
     <body class="font-sans antialiased flex overflow-auto">
         <div class="bg-transparent fixed z-20">

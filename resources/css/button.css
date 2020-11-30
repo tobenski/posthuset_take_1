@@ -14,9 +14,15 @@
       @apply bg-red-700;
   }
   .btn-primary {
-      @apply bg-primary-500 text-text;
+      @apply bg-primary text-text;
   }
   .btn-primary:hover {
-      @apply bg-primary-700;
+      @apply bg-primary-hover;
   }
 
+.btn-book {
+    @apply font-bold py-2 px-4 rounded-t bg-primary absolute z-40;
+}
+.btn-book:hover {
+    @apply bg-primary-hover;
+}

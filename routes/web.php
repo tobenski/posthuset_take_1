@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/menukort/{type?}', LivewireMenukort::class)->name('menukort');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -48,5 +47,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     ]);
 });
 
+//Route::get('/menukort/{type?}', LivewireMenukort::class)->name('menukort');
+Route::get('/menukort', LivewireMenukort::class)->name('menukort');
 Route::get('/test', Test::class)->name('test');
 Route::get('/', Forside::class)->name('home');

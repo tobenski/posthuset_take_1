@@ -40,7 +40,12 @@ module.exports = {
                     'default': colors.gray[200],
                     'dark': colors.gray[800],
                 },
-                'primary': colors.blue,
+                'primary': {
+                    'hover': colors.blue[700],
+                    'default': colors.blue[500],
+                },
+                'secondary': colors.gray,
+                'danger': colors.red,
                 'text': colors.white,
 
             },
