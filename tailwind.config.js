@@ -10,7 +10,20 @@ module.exports = {
 
     theme: {
         extend: {
+            inset: {
+                'screen-1/3': '33vh',
+            },
+            height: {
+                'screen-1/3': '33vh',
+            },
             maxWidth: {
+                '1/4': '25%',
+                '1/3': '33%',
+                '1/2': '50%',
+                '2/3': '66%',
+                '3/4': '75%',
+            },
+            minHeight: {
                 '1/4': '25%',
                 '1/3': '33%',
                 '1/2': '50%',
@@ -43,6 +56,10 @@ module.exports = {
                 'primary': {
                     'hover': colors.blue[700],
                     'default': colors.blue[500],
+                },
+                'menu': {
+                    'hover': colors.green[700],
+                    'default': colors.green[500],
                 },
                 'secondary': colors.gray,
                 'danger': colors.red,
