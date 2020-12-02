@@ -7,7 +7,7 @@
     <div class="flex w-full items-center justify-center absolute top-0 left-0 mt-2 md:mt-8">
         <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sche text-white">Det Gamle Posthus</h1>
     </div>
-    <div x-data="{openTab: 1 }" class="flex flex-col relative top-screen-1/3 w-full items-center justify-start">
+    <div x-data="{openTab: 1 }" class="flex flex-col relative top-screen-1/3 w-full items-center justify-start mb-20">
         <div class="flex border-b-2  border-black bg-white h-8 md:h-14 w-full items-center justify-center">
             <div @click="openTab=1"
                  class="flex items-end pb-1 h-full w-30 md:w-40 justify-center text-black border-l-2 border-r border-black font-bold text-xs md:text-md px-2 md:px-8 lg:px-8 hover:bg-gray-200 cursor-pointer"

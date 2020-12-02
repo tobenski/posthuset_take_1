@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\HomeBoxesController;
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\RouteController;
+use App\Http\Livewire\Admin\Frokost;
 use App\Http\Livewire\Admin\Menukort;
 use App\Http\Livewire\Forside;
 use App\Http\Livewire\Admin\Menus;
@@ -40,6 +41,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('page', Pages::class);
     Route::get('menukort', Menukort::class);
+
+    Route::get('menu/frokost', Frokost::class);
 
     Route::resources([
         'pages' => PagesController::class,

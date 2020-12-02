@@ -6,20 +6,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MenuType extends Model
+class Ret extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'menu_types';
+    protected $table = 'rets';
 
     protected $fillable = [
         'name',
-        'time',
+        'content',
+        'price',
     ];
 
-    public function menucards()
+    public function retable()
     {
-        return $this->hasMany(Menucard::class);
+        return $this->morphTo();
+    }
+
+    public function frokostMenuer() //poly
+    {
+        return $this->belongsToMany(FrokostMenu::class);
     }
 }
