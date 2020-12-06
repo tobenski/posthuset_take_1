@@ -12,7 +12,7 @@
             @endif
             <div>
                 <h2 class="text-2xl font-bold">{{ __('Edit Frokostmenu') }}</h2>
-                <form action="{{ route('admin.frokostmenu.update', $frokostmenu) }}" method="POST" >
+                <form action="{{ route('admin.frokostmenu.update', $frokostmenu) }}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     @method('put')
                     <div class="grid grid-cols-3 gap-6">
@@ -79,22 +79,28 @@
                             />
                             @error('commennt') <span class="text-red-500">{{ $message }}</span>@enderror
                         </label>
-                        <label class="block">
-                            <span class="text-gray-700">{{ __('Image') }}</span>
-                            <input
-                                type="text"
-                                class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                                value="{{ $frokostmenu->image }}"
-                                name="image"
-                                id="image"
-                            />
-                            @error('image') <span class="text-red-500">{{ $message }}</span>@enderror
-                        </label>
+                        <div class="flex justify-start">
+                            @if($frokostmenu->getFirstMedia('menu'))
+                                {{ $frokostmenu->getFirstMedia('menu')->img()->attributes(['class' => 'w-36 m-6']) }}
+                            @endif
+                            <label class="block">
+                                <span class="text-gray-700">{{ __('Image') }}</span>
+                                <input
+                                    type="file"
+                                    class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                    value="{{ $frokostmenu->image }}"
+                                    name="image"
+                                    id="image"
+                                />
+                                @error('image') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </label>
+                        </div>
                         <div class="block float-right">
                             <input type="submit" value="{{ __('Update') }}" class="btn btn-primary" />
                         </div>
                     </div>
                 </form>
+
                 <table class="w-full table-fixed mt-4 mb-12">
                     <thead>
                         <tr class="bg-gray-300">

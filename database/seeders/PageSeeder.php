@@ -20,5 +20,9 @@ class PageSeeder extends Seeder
         ]);
         $home->slug = '';
         $home->save();
+
+        $home->seo()->create([
+            'title' => 'Forside',
+        ]);
     }
 }

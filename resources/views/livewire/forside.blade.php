@@ -22,7 +22,7 @@
                                 {{ $box->title }}
                             </h3>
                             <p class="mb-6 text-xs sm:text-sm md:text-lg">{{ $box->content }}</p>
-                            <a href="#" class="font-bold py-1 px-2 rounded-lg bg-primary text-text text-xs
+                            <a href="{{ $box->link }}" class="font-bold py-1 px-2 rounded-lg bg-primary text-text text-xs
                                             sm:text-sm
                                             md:text-md md:py-3 md:px-4 md:text-md
                                             lg:px-5 lg:text-lg

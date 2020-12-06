@@ -6,15 +6,18 @@ use Flyhjaelp\LaravelEloquentOrderable\Interfaces\OrderableInterface;
 use Flyhjaelp\LaravelEloquentOrderable\Traits\OrderableWithinGroup;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class LunchDish extends Model implements OrderableInterface
+class LunchDish extends Model implements OrderableInterface, HasMedia
 {
     use HasFactory;
     use SoftDeletes;
     use OrderableWithinGroup;
+    use InteractsWithMedia;
 
     protected $table = 'lunch_dishes';
 

@@ -33,40 +33,28 @@
         <div class="w-full md:w-9/12 h-full min-h-1/4 bg-menu text-white relative top-4 md:top-8">
             <div x-show="openTab === 1"
                  class="text-xs text-center flex flex-col w-full p-2 md:p4 md:px-24 lg:px-40">
-                 <h3 class="text-lg font-bold">Frokostmenu</h3>
-                 <h5 class="text-xs font-hairline">Serveres mellem 11.30 og 14.30</h5>
-                 <h5 class="text-xs font-hairline mb-1 border-b border-white -mx-2 md:-mx-24 lg:-mx-40">Menuen er gældende til og med den 23. december</h5>
-                 <p class="mb-2 text-sm leading-none mt-4">
-                    <b>Stjerneskud</b><br>
-                    <span class="text-xs">Stegt & dampet fiskefilet med koldrøget laks, rejer & rogn.
-                    Serveret på smørristet toast.<br></span>
-                    <b>159,-</b></p>
-                 <p class="mb-2"><b>Frokost Steak</b><br>
-                    Steak af filet fra Dansk kødkvæg, serveret med kryddersmør, grøn salat, grove fritter & dyppelse.<br>
-                    <b>199,-</b></p>
-                <p class="mb-2">
-                    <b>Stjerneskud</b><br>
-                    Stegt & dampet fiskefilet med koldrøget laks, rejer & rogn.
-                    Serveret på smørristet toast.<br>
-                    <b>159,-</b></p>
-                    <p class="mb-2"><b>Frokost Steak</b><br>
-                    Steak af filet fra Dansk kødkvæg, serveret med kryddersmør, grøn salat, grove fritter & dyppelse.<br>
-                    <b>199,-</b></p>
-                <p class="mb-2">
-                    <b>Stjerneskud</b><br>
-                    Stegt & dampet fiskefilet med koldrøget laks, rejer & rogn.
-                    Serveret på smørristet toast.<br>
-                    <b>159,-</b></p>
-                    <p class="mb-2"><b>Frokost Steak</b><br>
-                    Steak af filet fra Dansk kødkvæg, serveret med kryddersmør, grøn salat, grove fritter & dyppelse.<br>
-                    <b>199,-</b></p>
-
-
+                 <h3 class="text-lg font-bold">{{ __('Frokostmenu') }}</h3>
+                 <h5 class="text-xs font-hairline">{!! $currentFrokostMenu->timeframe !!}</h5>
+                 <h5 class="text-xs font-hairline mb-1 border-b border-white -mx-2 md:-mx-24 lg:-mx-40">Menuen er gældende til og med {{ Carbon\Carbon::parse($currentFrokostMenu->lastday)->locale('da_DK')->isoFormat('dddd [den] Do MMMM') }}.</h5>
+                 @foreach($currentFrokostMenu->retter as $ret)
+                     <p class="mb-2 text-sm leading-none mt-4">
+                         <b>{!! $ret->name !!}</b><br>
+                         <span class="text-xs">
+                            {!! $ret->content !!}
+                         </span><br>
+                         <b>{!! $ret->price !!},-</b>
+                     </p>
+                 @endforeach
             </div>
             <div x-show="openTab === 1"
                 class="md:absolute md:-ml-16 lg:-ml-36 md:top-24 w-full md:w-36 lg:w-72 md:h-18 lg:h-36">
                 <picture>
-                    <img src="https://detgamleposthusvideo.s3.eu-north-1.amazonaws.com/Stjerneskud.jpg" class="w-full h-full object-cover object-center" alt="">
+                    @if($currentFrokostMenu->getFirstMedia('menu'))
+                        {{ $currentFrokostMenu->getFirstMedia('menu')->img()->attributes(['class' => 'w-full h-full object-cover object-center']) }}
+                    @else
+                        <img src="https://via.placeholder.com/300?text=Upload+et+billede+til+at+blive+vist+her" class="w-full h-full object-cover object-center">
+                    @endif
+
                 </picture>
             </div>
             <div x-show="openTab === 2"

@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $user = User::create([
             'name' => 'Administrator',
             'email' => 'admin@admin.com',
@@ -26,6 +25,8 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             SlideSeeder::class,
             PageSeeder::class,
+            HomeBoxesSeeder::class,
+            FrokostMenuSeeder::class,
             ]);
     }
 }

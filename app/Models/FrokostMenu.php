@@ -6,11 +6,15 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\File;
 
-class FrokostMenu extends Model
+class FrokostMenu extends Model implements HasMedia
 {
     use HasFactory;
     use SoftDeletes;
+    use InteractsWithMedia;
 
     protected $table = 'frokost_menus';
 
@@ -32,6 +36,14 @@ class FrokostMenu extends Model
         'firstday',
         'lastday',
     ];
+
+    public function registerMediaCollections(): void
+{
+    $this->addMediaCollection('menu')
+         ->useDisk('s3')
+         ->singleFile()
+         ->withResponsiveImages();
+}
 
     public function getFirstdayAttribute()
     {

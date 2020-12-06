@@ -22,7 +22,7 @@ class MenuSeeder extends Seeder
         ]);
         Menu::create([
             'text' => 'Menukort',
-            'url' => route('home'),
+            'url' => route('menukort'),
             'order' => 1,
 
         ]);

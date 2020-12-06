@@ -91,10 +91,14 @@ class FrokostMenuController extends Controller
             'lastday' => 'required|date|after:firstday',
             'timeframe' => 'nullable|string',
             'comment' => 'nullable|string',
-            'image' => '',
         ]);
 
         $validatedData['online'] = $request->online == 'on' ? true : false;
+
+        if($request->image) {
+            $frokostmenu->addMedia($request->image)
+                        ->toMediaCollection('menu');
+        }
 
         $frokostmenu->update($validatedData);
 
