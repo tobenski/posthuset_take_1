@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,6 +31,16 @@ class FrokostMenu extends Model
         'firstday',
         'lastday',
     ];
+
+    public function getFirstdayAttribute()
+    {
+        return Carbon::parse($this->attributes['firstday'])->toDateString();
+    }
+
+    public function getLastdayAttribute()
+    {
+        return Carbon::parse($this->attributes['lastday'])->toDateString();
+    }
 
     public function retter()
     {

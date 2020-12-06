@@ -19,9 +19,6 @@ class CreatePagesTable extends Migration
             $table->string('name');
             $table->boolean('online')->default(false);
 
-
-
-
             $table->softDeletes();
             $table->timestamps();
         });

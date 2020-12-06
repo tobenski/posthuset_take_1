@@ -11,7 +11,7 @@
                             {{ __('First Day') }}
                         </label>
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                               id="first-day"
+                               wire:model='frokostmenu.firstday'
                                type="date">
                         <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
@@ -20,7 +20,7 @@
                             {{ __('Last Day') }}
                         </label>
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                               id="lastday"
+                               wire:model='frokostmenu.lastday'
                                type="date">
                         <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
@@ -29,8 +29,8 @@
                             {{ __('Timeframe') }}
                         </label>
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                               id="first-day"
-                               type="text">
+                               type="text"
+                               wire:model="frokostmenu.timeframe">
                         <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             {{ __('Comment') }}
                         </label>
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                               id="first-day"
+                               wire:model='frokostmenu.comment'
                                type="text">
                         <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
@@ -49,40 +49,61 @@
                             {{ __('Image URL') }}
                         </label>
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                               id="first-day"
+                               wire:model='frokostmenu.image'
                                type="text">
                         <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <label class="md:w-2/3 block text-gray-500 font-bold">
-                        <input class="mr-2 leading-tight outline-black" type="checkbox">
+                        <input class="mr-2 leading-tight outline-black" type="checkbox" wire:model='frokostmenu.online'>
                         <span class="text-sm">
                         Online
                         </span>
                     </label>
                 </div>
-                <table class="w-full table table-fixed">
+                <table class="w-full table-fixed text-center">
                     <thead>
                         <tr>
-                            <th>{{ __('Name') }}</th>
-                            <th>{{ __('Content') }}</th>
-                            <th>{{ __('Price') }}</th>
+                            <th class="px-4 py-2 w-60   ">{{ __('Name') }}</th>
+                            <th class="px-4 py-2">{{ __('Content') }}</th>
+                            <th class="px-4 py-2 w-20">{{ __('Price') }}</th>
+                            <th class="px-4 py-2 w-32">{{ __('Action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td><textarea></textarea></td>
-                            <td><input type="number"></td>
-                        </tr>
-                        @for($i = 0; $i < 10; $i++)
-                            <tr>
-                                <td><input type="text" value="Name: {{ $i  }}"></td>
-                                <td><textarea>Content {{ $i  }}</textarea></td>
-                                <td><input type="number" value="{{ $i  }}"></td>
+                        <form>
+                            <tr class=" align-top">
+                                <td class="border px-1 py-2">
+                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-1 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                id="firstday"
+                                type="text"
+                                wire:model="name">
+                                </td>
+                                <td class="border px-1 py-2">
+                                    <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-1 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                        rows="5"
+                                        wire:model='content'>
+                                    </textarea>
+                                </td>
+                                <td class="border px-1 py-2">
+                                    <input type="number"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-1 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    wire:model='price'>
+                                </td>
+                                <td class="border px-4 py-2">
+                                    <button wire:click="createRet()" class="bg-green-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">{{ __('Create') }}</button>
+                                </td>
                             </tr>
-                        @endfor
+                        </form>
+
+                        @foreach($frokostmenu->retter as $ret)
+                            <tr>
+                                <td><input type="text" value="{{ $ret->name }}"></td>
+                                <td><textarea>Content {{ $ret->content  }}</textarea></td>
+                                <td><input type="number" value="{{ $ret->price  }}"></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </form>

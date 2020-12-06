@@ -17,7 +17,7 @@ class CreateFrokostMenusTable extends Migration
             $table->id();
             $table->timestamp('firstday');
             $table->timestamp('lastday');
-            $table->string('timeframe');
+            $table->string('timeframe')->default('Serveres mellem 11.30 & 14.30');
             $table->string('comment')->nullable();
             $table->boolean('online')->default(false);
             $table->string('image')->nullable();
