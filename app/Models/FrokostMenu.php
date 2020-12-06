@@ -21,6 +21,7 @@ class FrokostMenu extends Model
         'comment',
         'online',
         'image',
+        'order',
     ];
 
     protected $casts = [
@@ -44,6 +45,6 @@ class FrokostMenu extends Model
 
     public function retter()
     {
-        return $this->morphMany(Ret::class, 'retable');
+        return $this->hasMany(LunchDish::class);
     }
 }

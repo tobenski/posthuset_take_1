@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <main class="py-12 w-screen h-screen overflow-y-scroll flex items-center justify-center">
+    <main class="py-12 w-screen min-h-screen flex items-center justify-center">
         <div class="flex flex-col w-10/12 min-h-full">
             @if (session()->has('message'))
                 <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
@@ -95,10 +95,10 @@
                         </div>
                     </div>
                 </form>
-                <table class="w-full table-fixed mt-4">
+                <table class="w-full table-fixed mt-4 mb-12">
                     <thead>
                         <tr class="bg-gray-300">
-                            <th class="px-4 py-2 w-20 border-2 border-black">#</th>
+                            <th class="px-4 py-2 w-32 border-2 border-black">Order</th>
                             <th class="px-4 py-2 border-2 border-black">{{ __('Name') }}</th>
                             <th class="px-4 py-2 border-2 border-black">{{ __('Content') }}</th>
                             <th class="px-4 py-2 border-2 border-black">{{ __('Price') }}</th>
@@ -107,10 +107,17 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <form action="{{ route('admin.frokostmenu.ret.store', $frokostmenu) }}" method="POST">
+                            <form action="{{ route('admin.frokostmenu.lunchDish.store', $frokostmenu) }}" method="POST">
                                 @csrf
                                 <td class="px-4 py-2 border-2 border-gray-600">
-                                    #
+                                    <input
+                                        type="number"
+                                        class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                        placeholder="{{ __('Order') }}"
+                                        value="{{ old('order') }}"
+                                        name="order"
+                                        id="order"
+                                    />
                                 </td>
                                 <td class="px-4 py-2 border-2 border-gray-600">
                                     <input
@@ -151,11 +158,18 @@
                         </tr>
                     @foreach($frokostmenu->retter as $ret)
                         <tr>
-                            <form action="{{ route('admin.ret.update', $ret) }}" method="POST">
+                            <form action="{{ route('admin.lunchDish.update', $ret) }}" method="POST">
                                 @csrf
                                 @method('put')
                                 <td class="px-4 py-2 border-2 border-gray-600">
-                                    {{ $ret->id }}
+                                    <input
+                                        type="number"
+                                        class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                        placeholder="{{ __('Order') }}"
+                                        value="{{ $ret->order }}"
+                                        name="order"
+                                        id="order"
+                                    />
                                 </td>
                                 <td class="px-4 py-2 border-2 border-gray-600">
                                     <input

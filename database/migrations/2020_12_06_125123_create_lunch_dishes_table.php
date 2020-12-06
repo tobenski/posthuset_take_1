@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRetsTable extends Migration
+class CreateLunchDishesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateRetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rets', function (Blueprint $table) {
+        Schema::create('lunch_dishes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('content');
             $table->integer('price')->nullable();
 
-            $table->integer('retable_id');
-            $table->string('retable_type');
+
+            $table->foreignId('frokost_menu_id');
+            $table->foreign('frokost_menu_id')
+                  ->references('id')->on('frokost_menus')
+                  ->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->unsignedInteger('order')->nullable();
 
@@ -36,6 +39,6 @@ class CreateRetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rets');
+        Schema::dropIfExists('lunch_dishes');
     }
 }

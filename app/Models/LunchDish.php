@@ -10,44 +10,37 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
-class Ret extends Model implements OrderableInterface
+class LunchDish extends Model implements OrderableInterface
 {
     use HasFactory;
     use SoftDeletes;
     use OrderableWithinGroup;
 
-    protected $table = 'rets';
+    protected $table = 'lunch_dishes';
 
     protected $fillable = [
         'name',
         'content',
         'price',
+        'order',
     ];
 
     public function scopeOrdered(Builder $query) : void
     {
-        $query->orderBy('retable_type')
-              ->orderBy('retable_id')
-              ->orderBy('order');
+        $query->orderBy('frokost_menu_id')->orderBy('order');
     }
 
     public function scopeWithinOrderGroup(Builder $query, OrderableInterface $orderableModel) : void
     {
-        $query->where('retabale_type', $orderableModel->retable_type)
-              ->where('retable_id', $orderableModel->retable_id);
+        $query->where('frokost_menu_id', $orderableModel->frokost_menu_id);
     }
 
-    public function columnsAffectingOrderGroup() : Collection
+    public function columnsAffectingOrderGroup(): Collection
     {
-        return collect(['retable_id']);
+        return collect(['frokost_menu_id']);
     }
 
-    public function retable()
-    {
-        return $this->morphTo();
-    }
-
-    public function frokostMenuer() //poly
+    public function frokostMenuer()
     {
         return $this->belongsToMany(FrokostMenu::class);
     }

@@ -43,15 +43,16 @@ class FrokostMenuController extends Controller
             'lastday' => 'required|date|after:firstday',
             'timeframe' => 'nullable|string',
             'comment' => 'nullable|string',
-            'online' => 'boolean',
             'image' => '',
         ]);
+
+        $validatedData['online'] = $request->online == 'on' ? true : false;
 
         $menu = FrokostMenu::create($validatedData);
 
         session()->flash('message', 'Frokostmenu created succesfully!!');
 
-        return redirect()->to(route('admin.frokostmeun.edit', $menu));
+        return redirect()->to(route('admin.frokostmenu.edit', $menu));
     }
 
     /**
