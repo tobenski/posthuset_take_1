@@ -11,6 +11,8 @@ use Livewire\Component;
 class Menukort extends Component
 {
     public $type;
+    public $current = true;
+    public $openTab = 1;
     public $menucard;
     public $menucards;
     public $frokostmenuer;
@@ -25,5 +27,29 @@ class Menukort extends Component
     public function render()
     {
         return view('livewire.menukort');
+    }
+
+
+    public function showTab($tab)
+    {
+        $this->openTab = $tab;
+        $this->currentMenu();
+    }
+
+    public function nextMenu()
+    {
+        $this->current = false;
+        if($this->frokostmenuer[1])
+        {
+            $this->currentFrokostMenu = $this->frokostmenuer[1];
+        } else {
+            $this->current = true;
+        }
+    }
+
+    public function currentMenu()
+    {
+        $this->current = true;
+        $this->currentFrokostMenu = $this->frokostmenuer[0];
     }
 }
