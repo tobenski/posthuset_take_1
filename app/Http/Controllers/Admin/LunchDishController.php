@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\FrokostMenu;
 use App\Models\LunchDish;
 use Illuminate\Http\Request;
@@ -101,3 +102,4 @@ class LunchDishController extends Controller
         //
     }
 }
+

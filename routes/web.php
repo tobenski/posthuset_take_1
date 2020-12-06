@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\FrokostMenuController;
 use App\Http\Controllers\Admin\HomeBoxesController;
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\RetController;
-use App\Http\Controllers\LunchDishController;
+use App\Http\Controllers\Admin\LunchDishController;
 use App\Http\Controllers\RouteController;
 use App\Http\Livewire\Admin\Frokost;
 use App\Http\Livewire\Admin\Menukort;
