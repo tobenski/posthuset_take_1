@@ -32,7 +32,7 @@ class AfternoonDish extends Model implements OrderableInterface
 
     public function scopeWithinOrderGroup(Builder $query, OrderableInterface $orderableModel) : void
     {
-        $query->where('eftermiddags_menu_id', $orderableModel->frokost_menu_id);
+        $query->where('eftermiddags_menu_id', $orderableModel->eftermiddags_menu_id);
     }
 
     public function columnsAffectingOrderGroup(): Collection
