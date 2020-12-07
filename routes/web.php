@@ -1,16 +1,17 @@
 <?php
 
+use App\Http\Controllers\Admin\AftenMenuController;
 use App\Http\Controllers\Admin\AfternoonDishController;
+use App\Http\Controllers\Admin\AnbefalerDishController;
+use App\Http\Controllers\Admin\AnbefalerMenuController;
 use App\Http\Controllers\Admin\BorneMenuController;
 use App\Http\Controllers\Admin\ChildrensDishController;
+use App\Http\Controllers\Admin\DinnerDishController;
 use App\Http\Controllers\Admin\EftermiddagsMenuController;
 use App\Http\Controllers\Admin\FrokostMenuController;
 use App\Http\Controllers\Admin\HomeBoxesController;
 use App\Http\Controllers\Admin\PagesController;
-use App\Http\Controllers\Admin\RetController;
 use App\Http\Controllers\Admin\LunchDishController;
-use App\Http\Controllers\RouteController;
-use App\Http\Livewire\Admin\Frokost;
 use App\Http\Livewire\Admin\Menukort;
 use App\Http\Livewire\Forside;
 use App\Http\Livewire\Admin\Menus;
@@ -57,12 +58,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         'frokostmenu' => FrokostMenuController::class,
         'eftermiddagsMenu' => EftermiddagsMenuController::class,
         'borneMenu' => BorneMenuController::class,
+        'aftenMenu' => AftenMenuController::class,
+        'anbefalerMenu' => AnbefalerMenuController::class,
 
     ]);
     Route::resource('frokostmenu.lunchDish', LunchDishController::class)->shallow();
     Route::resource('eftermiddagsMenu.afternoonDish', AfternoonDishController::class)->shallow();
     Route::resource('borneMenu.childrensDish', ChildrensDishController::class)->shallow();
-
+    Route::resource('aftenMenu.dinnerDish', DinnerDishController::class)->shallow();
+    Route::resource('anbefalerMenu.anbefalerDish', AnbefalerDishController::class)->shallow();
 });
 
 Route::get('/menukort', LivewireMenukort::class)->name('menukort');

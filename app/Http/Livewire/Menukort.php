@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\AftenMenu;
+use App\Models\AnbefalerMenu;
 use App\Models\BorneMenu;
 use App\Models\EftermiddagsMenu;
 use App\Models\FrokostMenu;
@@ -14,6 +16,8 @@ class Menukort extends Component
 {
     public $type;
     public $current = true;
+    public $currentAnbefaler = true;
+    public $currentAften = true;
     public $openTab = 1;
     public $menucard;
     public $menucards;
@@ -23,8 +27,12 @@ class Menukort extends Component
     public FrokostMenu $currentFrokostMenu;
     public $bornemenuer;
     public BorneMenu $currentBorneMenu;
+    public $aftenmenuer;
+    public AftenMenu $currentAftenMenu;
+    public $anbefalermenuer;
+    public AnbefalerMenu $currentAnbefalerMenu;
 
-    public function mount($type=null)
+    public function mount()
     {
         $this->frokostmenuer = FrokostMenu::where('online', true)->where('lastday', '>=', \Carbon\Carbon::now())->get();
         $this->currentFrokostMenu = $this->frokostmenuer->first();
@@ -32,6 +40,10 @@ class Menukort extends Component
         $this->currentEftermiddagsMenu = $this->eftermiddagsmenuer->first();
         $this->bornemenuer = BorneMenu::where('online', true)->get();
         $this->currentBorneMenu = $this->bornemenuer->where('firstday', '<=', \Carbon\Carbon::now())->first();
+        $this->aftenmenuer = AftenMenu::where('online', true)->where('lastday', '>=', Carbon::now())->get();
+        $this->currentAftenMenu = $this->aftenmenuer->first();
+        $this->anbefalermenuer = AnbefalerMenu::where('online', true)->where('lastday', '>=', Carbon::now())->get();
+        $this->currentAnbefalerMenu = $this->anbefalermenuer->first();
     }
 
     public function render()
@@ -59,6 +71,10 @@ class Menukort extends Component
         {
             $this->currentEftermiddagsMenu = $this->eftermiddagsmenuer[1];
         }
+        else if ($this->openTab == 3)
+        {
+
+        }
         else if ($this->openTab === 4)
         {
             $this->current = true;
@@ -69,11 +85,54 @@ class Menukort extends Component
         }
     }
 
+    public function nextAnbefalerMenu()
+    {
+        if ($this->anbefalermenuer[1])
+        {
+            $this->currentAnbefalerMenu = $this->anbefalermenuer[1];
+            $this->currentAnbefaler = false;
+        }
+        else
+        {
+            $this->currentAnbefaler = true;
+        }
+    }
+
+    public function nextAftenMenu()
+    {
+        if ($this->aftenmenuer[1])
+        {
+            $this->currentAftenMenu = $this->aftenmenuer[1];
+            $this->currentAften = false;
+        }
+        else
+        {
+            $this->currentAften = true;
+        }
+    }
+
+    public function currentAnbefalerMenu()
+    {
+        $this->currentAnbefaler = true;
+        $this->currentAnbefalerMenu = $this->anbefalermenuer[0];
+    }
+
+    public function currentAftenMenu()
+    {
+        $this->currentAften = true;
+        $this->currentAftenMenu = $this->aftenmenuer[0];
+    }
+
     public function currentMenu()
     {
         $this->current = true;
+        $this->currentAften = true;
+        $this->currentAnbefaler = true;
+
         $this->currentFrokostMenu = $this->frokostmenuer[0];
         $this->currentEftermiddagsMenu = $this->eftermiddagsmenuer[0];
         $this->currentBorneMenu = $this->bornemenuer[0];
+        $this->currentAnbefalerMenu = $this->anbefalermenuer[0];
+        $this->currentAftenMenu = $this->aftenmenuer[0];
     }
 }

@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             FrokostMenuSeeder::class,
             EftermiddagsMenuSeeder::class,
             BorneMenuSeeder::class,
+            AftenMenuSeeder::class,
+            AnbefalerMenuSeeder::class,
             ]);
     }
 }
