@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AfternoonDishController;
+use App\Http\Controllers\Admin\BorneMenuController;
+use App\Http\Controllers\Admin\ChildrensDishController;
 use App\Http\Controllers\Admin\EftermiddagsMenuController;
 use App\Http\Controllers\Admin\FrokostMenuController;
 use App\Http\Controllers\Admin\HomeBoxesController;
@@ -54,14 +56,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         'homebox' => HomeBoxesController::class,
         'frokostmenu' => FrokostMenuController::class,
         'eftermiddagsMenu' => EftermiddagsMenuController::class,
+        'borneMenu' => BorneMenuController::class,
 
     ]);
     Route::resource('frokostmenu.lunchDish', LunchDishController::class)->shallow();
     Route::resource('eftermiddagsMenu.afternoonDish', AfternoonDishController::class)->shallow();
+    Route::resource('borneMenu.childrensDish', ChildrensDishController::class)->shallow();
 
 });
 
-//Route::get('/menukort/{type?}', LivewireMenukort::class)->name('menukort');
 Route::get('/menukort', LivewireMenukort::class)->name('menukort');
 Route::get('/test', Test::class)->name('test');
 Route::get('/', Forside::class)->name('home');

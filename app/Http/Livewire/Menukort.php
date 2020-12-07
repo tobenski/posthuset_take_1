@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\BorneMenu;
 use App\Models\EftermiddagsMenu;
 use App\Models\FrokostMenu;
 use App\Models\Menucard;
@@ -20,6 +21,8 @@ class Menukort extends Component
     public EftermiddagsMenu $currentEftermiddagsMenu;
     public $frokostmenuer;
     public FrokostMenu $currentFrokostMenu;
+    public $bornemenuer;
+    public BorneMenu $currentBorneMenu;
 
     public function mount($type=null)
     {
@@ -27,6 +30,8 @@ class Menukort extends Component
         $this->currentFrokostMenu = $this->frokostmenuer->first();
         $this->eftermiddagsmenuer = EftermiddagsMenu::where('online', true)->where('lastday', '>=', \Carbon\Carbon::now())->get();
         $this->currentEftermiddagsMenu = $this->eftermiddagsmenuer->first();
+        $this->bornemenuer = BorneMenu::where('online', true)->get();
+        $this->currentBorneMenu = $this->bornemenuer->where('firstday', '<=', \Carbon\Carbon::now())->first();
     }
 
     public function render()
@@ -54,6 +59,10 @@ class Menukort extends Component
         {
             $this->currentEftermiddagsMenu = $this->eftermiddagsmenuer[1];
         }
+        else if ($this->openTab === 4)
+        {
+            $this->current = true;
+        }
         else
         {
             $this->current = true;
@@ -65,5 +74,6 @@ class Menukort extends Component
         $this->current = true;
         $this->currentFrokostMenu = $this->frokostmenuer[0];
         $this->currentEftermiddagsMenu = $this->eftermiddagsmenuer[0];
+        $this->currentBorneMenu = $this->bornemenuer[0];
     }
 }

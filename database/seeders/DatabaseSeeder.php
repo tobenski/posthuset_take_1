@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             HomeBoxesSeeder::class,
             FrokostMenuSeeder::class,
             EftermiddagsMenuSeeder::class,
+            BorneMenuSeeder::class,
             ]);
     }
 }
