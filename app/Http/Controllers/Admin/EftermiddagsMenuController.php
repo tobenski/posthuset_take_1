@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\FrokostMenu;
+use App\Models\EftermiddagsMenu;
 use Illuminate\Http\Request;
 
-class FrokostMenuController extends Controller
+class EftermiddagsMenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class FrokostMenuController extends Controller
      */
     public function index()
     {
-        $frokostMenuer = FrokostMenu::all();
-
-        return view('admin.frokostmenu.index')->with('frokostmenuer', $frokostMenuer);
+        $eftermiddagsMenuer = EftermiddagsMenu::all();
+        return view('admin.eftermiddagsmenu.index')->with('eftermiddagsmenuer', $eftermiddagsMenuer);
     }
 
     /**
@@ -27,7 +26,7 @@ class FrokostMenuController extends Controller
      */
     public function create()
     {
-        return view('admin.frokostmenu.create');
+        return view('admin.eftermiddagsmenu.create');
     }
 
     /**
@@ -48,43 +47,43 @@ class FrokostMenuController extends Controller
 
         $validatedData['online'] = $request->online == 'on' ? true : false;
 
-        $menu = FrokostMenu::create($validatedData);
+        $menu = EftermiddagsMenu::create($validatedData);
 
-        session()->flash('message', 'Frokostmenu created succesfully!!');
+        session()->flash('message', 'Eftermiddagsmenu created succesfully!!');
 
-        return redirect()->to(route('admin.frokostmenu.edit', $menu));
+        return redirect()->to(route('admin.eftermiddagsmenu.edit', $menu));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FrokostMenu  $frokostMenu
+     * @param  \App\Models\EftermiddagsMenu  $eftermiddagsMenu
      * @return \Illuminate\Http\Response
      */
-    public function show(FrokostMenu $frokostmenu)
+    public function show(EftermiddagsMenu $eftermiddagsMenu)
     {
-        return view('admin.frokostmenu.show')->with('frokostmenu', $frokostmenu);
+        return view('admin.eftermiddagsmenu.show')->with('eftermiddagsmenu', $eftermiddagsMenu);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FrokostMenu  $frokostMenu
+     * @param  \App\Models\EftermiddagsMenu  $eftermiddagsMenu
      * @return \Illuminate\Http\Response
      */
-    public function edit(FrokostMenu $frokostmenu)
+    public function edit(EftermiddagsMenu $eftermiddagsMenu)
     {
-        return view('admin.frokostmenu.edit')->with('frokostmenu', $frokostmenu);
+        return view('admin.eftermiddagsmenu.edit')->with('eftermiddagsmenu', $eftermiddagsMenu);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FrokostMenu  $frokostMenu
+     * @param  \App\Models\EftermiddagsMenu  $eftermiddagsMenu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FrokostMenu $frokostmenu)
+    public function update(Request $request, EftermiddagsMenu $eftermiddagsMenu)
     {
         $validatedData = $request->validate([
             'firstday' => 'required|date',
@@ -96,13 +95,13 @@ class FrokostMenuController extends Controller
         $validatedData['online'] = $request->online == 'on' ? true : false;
 
         if($request->image) {
-            $frokostmenu->addMedia($request->image)
+            $eftermiddagsMenu->addMedia($request->image)
                         ->toMediaCollection('menu');
         }
 
-        $frokostmenu->update($validatedData);
+        $eftermiddagsMenu->update($validatedData);
 
-        session()->flash('message', 'Frokostmenu updated succesfully!!');
+        session()->flash('message', 'Eftermiddagsmenu updated succesfully!!');
 
         return redirect()->back();
     }
@@ -110,18 +109,18 @@ class FrokostMenuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FrokostMenu  $frokostMenu
+     * @param  \App\Models\EftermiddagsMenu  $eftermiddagsMenu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FrokostMenu $frokostmenu)
+    public function destroy(EftermiddagsMenu $eftermiddagsMenu)
     {
-        foreach ($frokostmenu->retter as $ret) {
+        foreach ($eftermiddagsMenu->retter as $ret) {
             $ret->delete();
         }
-        $frokostmenu->delete();
+        $eftermiddagsMenu->delete();
 
-        session()->flash('message', 'Frokostmenu deleted succesfully!!');
+        session()->flash('message', 'Eftermiddags menu deleted succesfully!!');
 
-        return redirect()->to(route('admin.frokostmenu.index'));
+        return redirect()->to(route('admin.eftermiddagsMenu.index'));
     }
 }

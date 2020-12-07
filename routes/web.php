@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AfternoonDishController;
+use App\Http\Controllers\Admin\EftermiddagsMenuController;
 use App\Http\Controllers\Admin\FrokostMenuController;
 use App\Http\Controllers\Admin\HomeBoxesController;
 use App\Http\Controllers\Admin\PagesController;
@@ -51,9 +53,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         'pages' => PagesController::class,
         'homebox' => HomeBoxesController::class,
         'frokostmenu' => FrokostMenuController::class,
+        'eftermiddagsMenu' => EftermiddagsMenuController::class,
 
     ]);
     Route::resource('frokostmenu.lunchDish', LunchDishController::class)->shallow();
+    Route::resource('eftermiddagsMenu.afternoonDish', AfternoonDishController::class)->shallow();
+
 });
 
 //Route::get('/menukort/{type?}', LivewireMenukort::class)->name('menukort');

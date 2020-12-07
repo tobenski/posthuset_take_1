@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\FrokostMenu;
+use App\Models\EftermiddagsMenu;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class FrokostMenuSeeder extends Seeder
+class EftermiddagsMenuSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,19 +15,19 @@ class FrokostMenuSeeder extends Seeder
      */
     public function run()
     {
-        $f1 = FrokostMenu::create([
+        $f1 = EftermiddagsMenu::create([
             'firstday' => Carbon::now()->subDays(10),
             'lastday' => Carbon::now()->addDays(20),
             'online' => true,
         ]);
 
-        $f2 = FrokostMenu::create([
+        $f2 = EftermiddagsMenu::create([
             'firstday' => Carbon::now()->addDays(21),
             'lastday' => Carbon::now()->addDays(50),
             'online' => true,
         ]);
 
-        $f3 = FrokostMenu::create([
+        $f3 = EftermiddagsMenu::create([
             'firstday' => Carbon::now()->addDays(51),
             'lastday' => Carbon::now()->addDays(81),
             'online' => true,
@@ -35,7 +35,7 @@ class FrokostMenuSeeder extends Seeder
 
         $f1->retter()->createMany([
             [
-                'name' => 'Første Frokost Ret',
+                'name' => 'Første eftermiddagfsRet',
                 'content' => 'Beskrivelse af retten',
                 'price' => 125,
             ],
@@ -53,8 +53,8 @@ class FrokostMenuSeeder extends Seeder
 
         $f2->retter()->createMany([
             [
-                'name' => 'Første Frokost Ret',
-                'content' => 'Beskrivelse af retten - 2 menu',
+                'name' => 'Første eftermiddagsRet',
+                'content' => 'Beskrivelse af 2 menu',
                 'price' => 125,
             ],
             [
@@ -71,8 +71,8 @@ class FrokostMenuSeeder extends Seeder
 
         $f3->retter()->createMany([
             [
-                'name' => 'Første Ret',
-                'content' => 'Beskrivelse af retten',
+                'name' => 'Første eftermiddagsRet',
+                'content' => 'Beskrivelse af 3 menu',
                 'price' => 125,
             ],
             [
@@ -86,5 +86,7 @@ class FrokostMenuSeeder extends Seeder
                 'price' => 325,
             ],
         ]);
+
+
     }
 }

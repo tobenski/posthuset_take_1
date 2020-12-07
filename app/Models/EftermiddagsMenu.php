@@ -10,15 +10,15 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\File;
 
-class FrokostMenu extends Model implements HasMedia
+class EftermiddagsMenu extends Model implements HasMedia
 {
     use HasFactory;
     use SoftDeletes;
     use InteractsWithMedia;
 
-    protected $table = 'frokost_menus';
+    protected $table = 'eftermiddags_menus';
 
-    protected $fillable =[
+    protected $fillable = [
         'firstday',
         'lastday',
         'timeframe',
@@ -57,6 +57,6 @@ class FrokostMenu extends Model implements HasMedia
 
     public function retter()
     {
-        return $this->hasMany(LunchDish::class);
+        return $this->hasMany(AfternoonDish::class);
     }
 }

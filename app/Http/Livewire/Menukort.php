@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\EftermiddagsMenu;
 use App\Models\FrokostMenu;
 use App\Models\Menucard;
 use App\Models\MenuType;
@@ -15,6 +16,8 @@ class Menukort extends Component
     public $openTab = 1;
     public $menucard;
     public $menucards;
+    public $eftermiddagsmenuer;
+    public EftermiddagsMenu $currentEftermiddagsMenu;
     public $frokostmenuer;
     public FrokostMenu $currentFrokostMenu;
 
@@ -22,6 +25,8 @@ class Menukort extends Component
     {
         $this->frokostmenuer = FrokostMenu::where('online', true)->where('lastday', '>=', \Carbon\Carbon::now())->get();
         $this->currentFrokostMenu = $this->frokostmenuer->first();
+        $this->eftermiddagsmenuer = EftermiddagsMenu::where('online', true)->where('lastday', '>=', \Carbon\Carbon::now())->get();
+        $this->currentEftermiddagsMenu = $this->eftermiddagsmenuer->first();
     }
 
     public function render()
@@ -39,10 +44,18 @@ class Menukort extends Component
     public function nextMenu()
     {
         $this->current = false;
-        if($this->frokostmenuer[1])
+
+
+        if($this->openTab === 1 && $this->frokostmenuer[1])
         {
             $this->currentFrokostMenu = $this->frokostmenuer[1];
-        } else {
+        }
+        else if ($this->openTab === 2 && $this->eftermiddagsmenuer[1])
+        {
+            $this->currentEftermiddagsMenu = $this->eftermiddagsmenuer[1];
+        }
+        else
+        {
             $this->current = true;
         }
     }
@@ -51,5 +64,6 @@ class Menukort extends Component
     {
         $this->current = true;
         $this->currentFrokostMenu = $this->frokostmenuer[0];
+        $this->currentEftermiddagsMenu = $this->eftermiddagsmenuer[0];
     }
 }

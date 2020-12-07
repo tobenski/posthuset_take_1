@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\FrokostMenu;
-use App\Models\LunchDish;
+use App\Models\AfternoonDish;
+use App\Models\EftermiddagsMenu;
 use Illuminate\Http\Request;
 
-class LunchDishController extends Controller
+class AfternoonDishController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class LunchDishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, FrokostMenu $frokostmenu)
+    public function store(Request $request, EftermiddagsMenu $eftermiddagsMenu)
     {
         $validatedData = $request->validate([
             'name' => 'required|string',
@@ -43,7 +43,7 @@ class LunchDishController extends Controller
             'price' => 'required|numeric',
             'order' => 'nullable|numeric',
         ]);
-        $frokostmenu->retter()->create($validatedData);
+        $eftermiddagsMenu->retter()->create($validatedData);
 
         return redirect()->back();
     }
@@ -51,10 +51,10 @@ class LunchDishController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\LunchDish  $lunchDish
+     * @param  \App\Models\AfternoonDish  $afternoonDish
      * @return \Illuminate\Http\Response
      */
-    public function show(LunchDish $lunchDish)
+    public function show(AfternoonDish $afternoonDish)
     {
         //
     }
@@ -62,10 +62,10 @@ class LunchDishController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\LunchDish  $lunchDish
+     * @param  \App\Models\AfternoonDish  $afternoonDish
      * @return \Illuminate\Http\Response
      */
-    public function edit(LunchDish $lunchDish)
+    public function edit(AfternoonDish $afternoonDish)
     {
         //
     }
@@ -74,10 +74,10 @@ class LunchDishController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LunchDish  $lunchDish
+     * @param  \App\Models\AfternoonDish  $afternoonDish
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LunchDish $lunchDish)
+    public function update(Request $request, AfternoonDish $afternoonDish)
     {
         $validatedData = $request->validate([
             'name' => 'required|string',
@@ -86,7 +86,7 @@ class LunchDishController extends Controller
             'order' => 'required|numeric',
         ]);
 
-        $lunchDish->update($validatedData);
+        $afternoonDish->update($validatedData);
 
         return redirect()->back();
     }
@@ -94,12 +94,11 @@ class LunchDishController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\LunchDish  $lunchDish
+     * @param  \App\Models\AfternoonDish  $afternoonDish
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LunchDish $lunchDish)
+    public function destroy(AfternoonDish $afternoonDish)
     {
-        $lunchDish->delete();
+        $afternoonDish->delete();
     }
 }
-
