@@ -18,7 +18,7 @@ class CreateAnbefalerMenusTable extends Migration
             $table->timestamp('firstday');
             $table->timestamp('lastday');
             $table->string('timeframe')->default('Serveres efter 17.30');
-            $table->string('comment')->nullable();
+            $table->string('comment')->default('Pris ved valg fra "Posthuset Anbefaler" herover<br>3 retter: 329,- | 4 retter: 399,- | 5 retter: 459,-<br>Vinmenu: 3 gl. 199,- | 4 gl. 259,- | 5 gl. 299,-');
             $table->boolean('online')->default(false);
             $table->string('image')->nullable();
 

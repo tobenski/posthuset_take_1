@@ -19,6 +19,11 @@ class AnbefalerMenuSeeder extends Seeder
             'firstday' => Carbon::now()->subDays(10),
             'lastday' => Carbon::now()->addDays(20),
             'online' => true,
+            'comment' => '
+            Pris ved valg fra "Posthuset Anbefaler" herover<br>
+            3 retter: 329,- | 4 retter: 399,- | 5 retter: 459,-<br>
+            Vinmenu: 3 gl. 199,- | 4 gl. 259,- | 5 gl. 299,-
+            '
         ]);
 
         $f2 = AnbefalerMenu::create([

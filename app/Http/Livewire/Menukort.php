@@ -32,7 +32,8 @@ class Menukort extends Component
     public $anbefalermenuer;
     public AnbefalerMenu $currentAnbefalerMenu;
 
-    public function mount()
+
+    public function mount($type = null)
     {
         $this->frokostmenuer = FrokostMenu::where('online', true)->where('lastday', '>=', \Carbon\Carbon::now())->get();
         $this->currentFrokostMenu = $this->frokostmenuer->first();
@@ -44,6 +45,7 @@ class Menukort extends Component
         $this->currentAftenMenu = $this->aftenmenuer->first();
         $this->anbefalermenuer = AnbefalerMenu::where('online', true)->where('lastday', '>=', Carbon::now())->get();
         $this->currentAnbefalerMenu = $this->anbefalermenuer->first();
+        $this->setOpenTab($type);
     }
 
     public function render()
@@ -134,5 +136,46 @@ class Menukort extends Component
         $this->currentBorneMenu = $this->bornemenuer[0];
         $this->currentAnbefalerMenu = $this->anbefalermenuer[0];
         $this->currentAftenMenu = $this->aftenmenuer[0];
+    }
+
+    public function setOpenTab($type)
+    {
+        switch ($type) {
+            case 'frokost':
+            case 'Frokost':
+                $this->openTab = 1;
+                break;
+
+            case 'eftermiddag':
+            case 'Eftermiddag':
+                $this->openTab = 2;
+                break;
+
+            case 'aften':
+            case 'Aften':
+                $this->openTab = 3;
+                break;
+
+            case 'born':
+            case 'Born':
+                $this->openTab = 4;
+                break;
+
+            default:
+                $this->openTabByTime($type);
+                break;
+        }
+    }
+
+    public function openTabByTime($type)
+    {
+        $now = Carbon::now();
+        if($now->hour <= 14) {
+            $this->openTab = 1;
+        } elseif ($now->hour > 14 && $now->hour < 17 ) {
+            $this->openTab = 2;
+        } else {
+            $this->openTab = 3;
+        }
     }
 }

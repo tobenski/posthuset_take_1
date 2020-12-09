@@ -20,10 +20,13 @@ class CreateDinnerDishesTable extends Migration
             $table->integer('price')->nullable();
 
 
+            $table->foreignId('menu_type_id');
+            $table->foreign('menu_type_id')
+                  ->references('id')->on('menu_types');
+
             $table->foreignId('aften_menu_id');
             $table->foreign('aften_menu_id')
-                  ->references('id')->on('aften_menus')
-                  ->cascadeOnDelete()->cascadeOnUpdate();
+                  ->references('id')->on('aften_menus');
 
             $table->unsignedInteger('order')->nullable();
 

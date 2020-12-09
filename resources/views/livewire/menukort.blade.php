@@ -1,4 +1,4 @@
-<main class="flex flex-col items-center justify-start min-h-screen min-w-full">
+<main class="flex flex-col items-center justify-start h-full min-h-screen min-w-full">
     <div id="overlay" class="absolute pointer-events-none top-0 left-0 w-full h-screen-1/3 overflow-hidden border-b-4 border-black">
         <video preload="auto" autoplay playsinline muted loop class="w-full h-full object-cover object-center">
             <source src="https://detgamleposthusvideo.s3.eu-north-1.amazonaws.com/front.mp4" type="video/mp4">
@@ -8,7 +8,7 @@
         <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sche text-white">Det Gamle Posthus</h1>
     </div>
     <div x-data="{openTab: @entangle('openTab'), current: @entangle('current'), currentAnbefaler: @entangle('currentAnbefaler'), currentAften: @entangle('currentAften') }"
-         class="flex flex-col relative top-screen-1/3 w-full items-center justify-start mb-20">
+         class="flex flex-col relative top-screen-1/3 w-full items-center justify-start mb-20 h-full">
         <div class="flex border-b-2  border-black bg-white h-8 md:h-14 w-full items-center justify-center">
             <div wire:click='showTab(1)'
                  class="flex items-end pb-1 h-full w-30 md:w-40 justify-center text-black border-l-2 border-r border-black font-bold text-xs md:text-md px-2 md:px-8 lg:px-8 hover:bg-gray-200 cursor-pointer"
@@ -31,7 +31,7 @@
                 Børn
             </div>
         </div>
-        <div class="w-full md:w-9/12 h-full min-h-1/4 bg-menu text-white relative top-4 md:top-8">
+        <div class="w-full md:w-9/12 h-full min-h-1/4 bg-menu text-white relative top-4 md:top-8 md:mb-20">
             @include('livewire.menukort.frokost')
             @include('livewire.menukort.eftermiddag')
             @include('livewire.menukort.aften')

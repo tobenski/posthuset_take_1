@@ -54,8 +54,44 @@ class AftenMenu extends Model implements HasMedia
         return Carbon::parse($this->attributes['lastday'])->toDateString();
     }
 
+
     public function retter()
     {
         return $this->hasMany(DinnerDish::class);
+    }
+
+    public function forretter()
+    {
+        return $this->retter()->where('menu_type_id', 1);
+    }
+
+    public function mellemretter()
+    {
+        return $this->retter()->where('menu_type_id', 2);
+    }
+
+    public function hovedretter()
+    {
+        return $this->retter()->where('menu_type_id', 3);
+    }
+
+    public function osteretter()
+    {
+        return $this->retter()->where('menu_type_id', 4);
+    }
+
+    public function desserter()
+    {
+        return $this->retter()->where('menu_type_id', 5);
+    }
+
+    public function osteDesserter()
+    {
+        return $this->retter()->where('menu_type_id','>=', 4);
+    }
+
+    public function hasOsteret()
+    {
+        return count($this->retter()->where('menu_type_id', 4)) > 0 ? true : false;
     }
 }

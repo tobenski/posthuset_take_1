@@ -23,10 +23,17 @@
             <b>{!! $ret->price !!},-</b>
         </p>
     @endforeach
+    <p class="mb-2 pt-2 text-sm leading-snug mt-4 border-t border-white -mx-2 md:-mx-24 lg:-mx-40">
+        {!! $currentAnbefalerMenu->comment !!}
+    </p>
+</div>
+<div x-show="openTab === 3"
+     class="bg-white w-full h-8">
+
 </div>
 <div x-show="openTab === 3"
         class="text-xs text-center flex flex-col w-full p-2 md:p4 md:px-24 lg:px-40">
-    <h3 class="text-lg font-bold">{{ __('Forretter') }}</h3>
+    <h3 class="text-lg font-bold">{{ __('Aften Menu') }}</h3>
     <h5 class="text-xs font-hairline">{!! $currentAftenMenu->timeframe !!}</h5>
     <h5 x-show="!currentAften" class="text-xs font-hairline">
         Menuen er gældende fra {{ Carbon\Carbon::parse($currentAftenMenu->firstday)->locale('da_DK')->isoFormat('dddd [den] Do MMMM') }}.
@@ -40,8 +47,33 @@
     <button wire:click="currentAftenMenu" x-show="!currentAften" class="text-xs font-semibold mb-1 border-b border-white -mx-2 md:-mx-24 lg:-mx-40 -my-1 py-1 bg-gray-600 bg-opacity-25">
         <span class="blink_me">Se den nuværende aftenmenu her</span>
     </button>
-    @foreach($currentAftenMenu->retter as $ret)
-        <p class="mb-2 text-sm leading-none mt-4">
+    <h3 class="text-lg font-bold mt-8">{{ __('Forretter') }}</h3>
+    @foreach($currentAftenMenu->forretter as $ret)
+        <p class="mb-2 text-sm leading-none mt-2">
+            <b>{!! $ret->name !!}</b><br>
+            <span class="text-xs">
+            {!! $ret->content !!}
+            </span><br>
+            <b>{!! $ret->price !!},-</b>
+        </p>
+    @endforeach
+    <h3 class="text-lg font-bold mt-8">{{ __('Hovedretter') }}</h3>
+    @foreach($currentAftenMenu->hovedretter as $ret)
+        <p class="mb-2 text-sm leading-none mt-2">
+            <b>{!! $ret->name !!}</b><br>
+            <span class="text-xs">
+            {!! $ret->content !!}
+            </span><br>
+            <b>{!! $ret->price !!},-</b>
+        </p>
+    @endforeach
+    @if(count($currentAftenMenu->osteretter) > 0)
+        <h3 class="text-lg font-bold mt-8">{{ __('Oste & Desserter') }}</h3>
+    @else
+        <h3 class="text-lg font-bold mt-8">{{ __('Desserter') }}</h3>
+    @endif
+    @foreach($currentAftenMenu->osteDesserter as $ret)
+        <p class="mb-2 text-sm leading-none mt-2">
             <b>{!! $ret->name !!}</b><br>
             <span class="text-xs">
             {!! $ret->content !!}
@@ -51,7 +83,7 @@
     @endforeach
 </div>
 <div x-show="openTab === 3"
-    class="md:absolute md:-ml-16 lg:-ml-36 md:top-24 w-full md:w-36 lg:w-72 md:h-18 lg:h-36">
+    class="md:absolute md:-ml-16 lg:-ml-36 md:top-24 w-full md:w-36 lg:w-72 md:h-18 lg:h-36 mb-4">
     <picture>
         @if($currentAftenMenu->getFirstMedia('menu'))
             {{ $currentAftenMenu->getFirstMedia('menu')->img()->attributes(['class' => 'w-full h-full object-cover object-center']) }}

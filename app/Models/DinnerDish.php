@@ -23,6 +23,7 @@ class DinnerDish extends Model implements OrderableInterface
         'content',
         'price',
         'order',
+        'menu_type_id',
     ];
 
     public function scopeOrdered(Builder $query) : void
@@ -38,6 +39,11 @@ class DinnerDish extends Model implements OrderableInterface
     public function columnsAffectingOrderGroup(): Collection
     {
         return collect(['frokost_menu_id']);
+    }
+
+    public function menuType()
+    {
+        $this->belongsTo(MenuType::class);
     }
 
     public function AftenMenuer()

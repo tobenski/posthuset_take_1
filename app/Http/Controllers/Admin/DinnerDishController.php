@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AftenMenu;
 use App\Models\DinnerDish;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,19 @@ class DinnerDishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, AftenMenu $aftenMenu)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'content' => 'required|string',
+            'price' => 'required|numeric',
+            'order' => 'nullable|numeric',
+            'menu_type_id' => 'required|numeric',
+            ]);
+
+            $aftenMenu->retter()->create($validatedData);
+
+            return redirect()->back();
     }
 
     /**
@@ -70,7 +81,17 @@ class DinnerDishController extends Controller
      */
     public function update(Request $request, DinnerDish $dinnerDish)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'content' => 'required|string',
+            'price' => 'required|numeric',
+            'order' => 'required|numeric',
+            'menu_type_id' => 'required|numeric',
+        ]);
+
+        $dinnerDish->update($validatedData);
+
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +102,6 @@ class DinnerDishController extends Controller
      */
     public function destroy(DinnerDish $dinnerDish)
     {
-        //
+        $dinnerDish->delete();
     }
 }

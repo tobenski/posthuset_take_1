@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AnbefalerDish;
+use App\Models\AnbefalerMenu;
 use Illuminate\Http\Request;
 
 class AnbefalerDishController extends Controller
@@ -34,9 +35,19 @@ class AnbefalerDishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, AnbefalerMenu $anbefalerMenu)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'content' => 'required|string',
+            'price' => 'required|numeric',
+            'order' => 'nullable|numeric',
+            'menu_type_id' => 'required|numeric',
+        ]);
+
+        $anbefalerMenu->retter()->create($validatedData);
+
+        return redirect()->back();
     }
 
     /**
@@ -70,7 +81,16 @@ class AnbefalerDishController extends Controller
      */
     public function update(Request $request, AnbefalerDish $anbefalerDish)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'content' => 'required|string',
+            'price' => 'required|numeric',
+            'order' => 'required|numeric',
+        ]);
+
+        $anbefalerDish->update($validatedData);
+
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +101,6 @@ class AnbefalerDishController extends Controller
      */
     public function destroy(AnbefalerDish $anbefalerDish)
     {
-        //
+        $anbefalerDish->delete();
     }
 }
