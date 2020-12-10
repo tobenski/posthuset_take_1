@@ -10,11 +10,14 @@ use App\Models\FrokostMenu;
 use App\Models\Menucard;
 use App\Models\MenuType;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Request;
 use Livewire\Component;
+use SebastianBergmann\Environment\Console;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Menukort extends Component
 {
-    public $type;
+    public $type = '';
     public $current = true;
     public $currentAnbefaler = true;
     public $currentAften = true;
@@ -32,8 +35,12 @@ class Menukort extends Component
     public $anbefalermenuer;
     public AnbefalerMenu $currentAnbefalerMenu;
 
+    protected $querystring = [
+        'type' => ['except' => ''],
+    ];
 
-    public function mount($type = null)
+
+    public function mount()
     {
         $this->frokostmenuer = FrokostMenu::where('online', true)->where('lastday', '>=', \Carbon\Carbon::now())->get();
         $this->currentFrokostMenu = $this->frokostmenuer->first();
@@ -45,11 +52,12 @@ class Menukort extends Component
         $this->currentAftenMenu = $this->aftenmenuer->first();
         $this->anbefalermenuer = AnbefalerMenu::where('online', true)->where('lastday', '>=', Carbon::now())->get();
         $this->currentAnbefalerMenu = $this->anbefalermenuer->first();
-        $this->setOpenTab($type);
+        $this->setOpenTab($this->type);
     }
 
     public function render()
     {
+
         return view('livewire.menukort');
     }
 
@@ -162,12 +170,12 @@ class Menukort extends Component
                 break;
 
             default:
-                $this->openTabByTime($type);
+                $this->openTabByTime();
                 break;
         }
     }
 
-    public function openTabByTime($type)
+    public function openTabByTime()
     {
         $now = Carbon::now();
         if($now->hour <= 14) {

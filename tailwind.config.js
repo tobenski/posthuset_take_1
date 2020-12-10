@@ -63,7 +63,7 @@ module.exports = {
                 },
                 'menu': {
                     'hover': colors.green[700],
-                    'default': colors.green[500],
+                    'default': '#3CB371',
                 },
                 'secondary': colors.gray,
                 'danger': colors.red,

@@ -69,6 +69,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('anbefalerMenu.anbefalerDish', AnbefalerDishController::class)->shallow();
 });
 
-Route::get('/menukort/{type?}', LivewireMenukort::class)->name('menukort');
+Route::get('/menukort', LivewireMenukort::class)->name('menukort');
 Route::get('/test', Test::class)->name('test');
 Route::get('/', Forside::class)->name('home');
