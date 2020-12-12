@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('menu', Menus::class);
+    Route::get('menu', Menus::class)->name('navigation');
     Route::get('slide', Slides::class);
 
     Route::get('page', Pages::class);

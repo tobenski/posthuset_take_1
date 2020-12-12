@@ -21,9 +21,7 @@
         <script src="https://kit.fontawesome.com/c4b1104435.js" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased flex flex-col overflow-x-hidden w-screen">
-        <header class="h-24 bg-gray-500 w-full">
-
-        </header>
+        <x-admin.navbar/>
         {{ $slot }}
 
 
