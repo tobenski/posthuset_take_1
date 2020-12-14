@@ -1,37 +1,78 @@
-<main class="w-screen h-screen max-h-screen">
-    <div id="overlay" class="absolute pointer-events-none top-0 left-0 w-full h-full overflow-hidden">
-        <video preload="auto" autoplay playsinline muted loop class="w-full h-full object-cover object-center">
-            <source src="https://detgamleposthusvideo.s3.eu-north-1.amazonaws.com/front.mp4" type="video/mp4">
-        </video>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<div x-data="{ swiper: null, thumbSwiper: null }"
+     x-init="() => {
+        thumbSwiper = new Swiper($refs.containerthumbs, {
+            slidesPerView: {{ count($slides) }},
+            spaceBetween: 10,
+            freemode: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+            },
+        });
+        () => {
+            swiper = new Swiper($refs.container, {
+                spaceBetween: 10,
+                thumbs: {
+                    swiper: thumbSwiper,
+                },
+            },
+        });
+    }"
+    class="w-9/12 md:w-11/12 mx-auto md:mx-20 flex flex-row relative h-screen">
+    <div class="absolute inset-y-0 left-0 z-10 items-center flex">
+        <button @click="swiper.slidePrev()"
+                class="bg-white -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+            <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+        </button>
     </div>
-    <div id="home-content" class="flex flex-col sm:flex-row h-full relative w-full">
-        @for($i = 0; $i < 3; $i++)
-        <div id="restaurant-box" class="w-full h-full overflow-hidden px-10 flex items-center justify-center
-                                        sm:w-1/3 sm:mt-0
-                                        md:px-2
-                                        lg:px-10 lg:items-start lg:pt-1/4">
-            <a href="#" class="bg-transparent text-home-box-text">
-                <div class="flex w-full items-start justi mb-3">
-                    <i class="fas fa-arrow-right text-2xl pt-4 lg:pt-2 pr-3 bounce"></i>
-                    <div class="">
-                        <h3 class="text-4xl font-bold font-sche leading-none
-                                   sm:text-4xl
-                                   lg:text-5xl">
-                            Restaurant
-                        </h3>
-                        <p class="mb-6 text-md sm:text-lg">Velkommen i restauranten. <br> Her er plads til en lille beskrivelse.</p>
-                        <a href="#" class="font-bold py-3 px-4 rounded-lg bg-primary-500 text-text text-md
-                                           sm:text-lg
-                                           lg:px-5
-                                           hover:bg-primary-700">
-                            Se menukort her
-                        </a>
+    <div class="flex flex-col">
+        <div class="swiper-container h-1/5" x-ref="containerthumbs">
+
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                @foreach($slides as $key => $slide)
+                    <div class="swiper-slide swiper-lazy bg-cover z-0 bg-center p-6 w-1/{{ count($slides) }} border-black border-8"
+                        data-background="{{ $slide->image }}"
+                        data-history="{{ $slide->slug }}"
+                        style="background-image: url({{ $slide->image }})"
+                        id="thumb_slide_{{ $key }}">
+
+                        <div class="flex flex-col items-center justify-center h-full w-full bg-white bg-opacity-25">
+                            <h2 class="text-4xl font-sche">{!! $slide->name !!}</h2>
+                            {!! $slide->content !!}
+                        </div>
+
                     </div>
-                </div>
-            </a>
+                @endforeach
+            </div>
+
         </div>
-        @endfor
+        <div class="swiper-container gallery-bottom h-4/5" x-ref="container">
 
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                @foreach($slides as $key => $slide)
+                    <div class="swiper-slide swiper-lazy bg-cover z-0 bg-center p-6 w-full border-black border-8"
+                        data-background="{{ $slide->image }}"
+                        data-history="{{ $slide->slug }}"
+                        style="background-image: url({{ $slide->image }})"
+                        id="slide_{{ $key }}">
 
+                        <div class="flex flex-col items-center justify-center h-full w-full bg-white bg-opacity-25">
+                            <h2 class="text-4xl font-sche">{!! $slide->name !!}</h2>
+                            {!! $slide->content !!}
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+
+        </div>
     </div>
-</main>
+    <div class="absolute inset-y-0 right-0 z-10 flex items-center">
+        <button @click="swiper.slideNext()"
+                class="bg-white -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+            <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        </button>
+    </div>
+</div>

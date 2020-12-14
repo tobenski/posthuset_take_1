@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             MenuTypeSeeder::class,
             AftenMenuSeeder::class,
             AnbefalerMenuSeeder::class,
+            EventSeeder::class,
             ]);
     }
 }

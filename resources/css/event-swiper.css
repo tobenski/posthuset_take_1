@@ -1,0 +1,30 @@
+.event-swiper .swiper-container {
+    @apply w-full mx-auto h-72;
+    }
+.event-swiper .gallery-main {
+        @apply h-10/12 w-full;
+    }
+.event-swiper .gallery-thumbs {
+    @apply h-2/12 box-border py-1 px-0;
+    }
+.event-swiper .gallery-thumbs .swiper-slide {
+    @apply w-1/4 h-full opacity-50;
+    }
+.event-swiper .gallery-thumbs .swiper-slide-thumb-active {
+        @apply opacity-100;
+    }
+.event-swiper .slider-image {
+    @apply w-full h-full object-cover object-center;
+    }
+
+@media (min-width: 640px) {
+    .event-swiper .gallery-main {
+        @apply h-4/5;
+    }
+    .event-swiper .gallery-thumbs {
+        @apply h-1/5 py-2;
+    }
+}
+
+
+

@@ -19,6 +19,8 @@ module.exports = {
             },
             height: {
                 'screen-1/3': '33vh',
+                'screen-1/5': '20vh',
+                'screen-1/10': '10vh',
             },
             maxWidth: {
                 '1/4': '25%',
@@ -33,6 +35,11 @@ module.exports = {
                 '1/2': '50%',
                 '2/3': '66%',
                 '3/4': '75%',
+                '1/4-screen': '25vh',
+                '1/3-screen': '33vh',
+                '1/2-screen': '50vh',
+                '2/3-screen': '66vh',
+                '3/4-screen': '75vh',
             },
             zIndex: {
                 '1000': '1000',

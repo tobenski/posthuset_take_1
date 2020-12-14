@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\BorneMenuController;
 use App\Http\Controllers\Admin\ChildrensDishController;
 use App\Http\Controllers\Admin\DinnerDishController;
 use App\Http\Controllers\Admin\EftermiddagsMenuController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Livewire\Events as LivewireEvents;
 use App\Http\Controllers\Admin\FrokostMenuController;
 use App\Http\Controllers\Admin\HomeBoxesController;
 use App\Http\Controllers\Admin\PagesController;
@@ -50,7 +52,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('page', Pages::class);
     Route::get('menukort', Menukort::class);
 
-    //Route::get('menu/frokost', Frokost::class);
 
     Route::resources([
         'pages' => PagesController::class,
@@ -60,6 +61,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         'borneMenu' => BorneMenuController::class,
         'aftenMenu' => AftenMenuController::class,
         'anbefalerMenu' => AnbefalerMenuController::class,
+        'event' => EventController::class,
 
     ]);
     Route::resource('frokostmenu.lunchDish', LunchDishController::class)->shallow();
@@ -69,6 +71,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('anbefalerMenu.anbefalerDish', AnbefalerDishController::class)->shallow();
 });
 
+
+Route::get('/arrangementer/{event?}', LivewireEvents::class)->name('arrangementer');
 Route::get('/menukort', LivewireMenukort::class)->name('menukort');
 Route::get('/test', Test::class)->name('test');
 Route::get('/', Forside::class)->name('home');
