@@ -74,5 +74,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
 Route::get('/arrangementer/{event?}', LivewireEvents::class)->name('arrangementer');
 Route::get('/menukort', LivewireMenukort::class)->name('menukort');
-Route::get('/test', Test::class)->name('test');
+Route::get('/test/{event?}', Test::class)->name('test');
 Route::get('/', Forside::class)->name('home');

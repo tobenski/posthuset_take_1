@@ -1,11 +1,11 @@
 .event-swiper .swiper-container {
-    @apply w-full mx-auto h-72;
+    @apply w-full mx-auto;
     }
 .event-swiper .gallery-main {
-        @apply h-10/12 w-full;
+        @apply h-screen-7/10 w-full;
     }
 .event-swiper .gallery-thumbs {
-    @apply h-2/12 box-border py-1 px-0;
+    @apply h-screen-1/5 box-border py-1 px-0;
     }
 .event-swiper .gallery-thumbs .swiper-slide {
     @apply w-1/4 h-full opacity-50;
@@ -14,15 +14,15 @@
         @apply opacity-100;
     }
 .event-swiper .slider-image {
-    @apply w-full h-full object-cover object-center;
+    @apply min-w-full h-screen-7/10 object-cover object-center;
     }
 
 @media (min-width: 640px) {
     .event-swiper .gallery-main {
-        @apply h-4/5;
+        @apply h-screen-7/10;
     }
     .event-swiper .gallery-thumbs {
-        @apply h-1/5 py-2;
+        @apply h-screen-1/5 py-2;
     }
 }
 

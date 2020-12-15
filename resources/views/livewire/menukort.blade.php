@@ -31,7 +31,7 @@
                 Børn
             </div>
         </div>
-        <div class="w-full md:w-9/12 h-full min-h-1/4 bg-menu text-white relative top-4 md:top-8 md:mb-20">
+        <div class="w-full md:w-9/12 h-full min-h-1/4 bg-menu text-white relative top-4 md:top-8 md:mb-20 overflow-x-visible">
             @include('livewire.menukort.frokost')
             @include('livewire.menukort.eftermiddag')
             @include('livewire.menukort.aften')

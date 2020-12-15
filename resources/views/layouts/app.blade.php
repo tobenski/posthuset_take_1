@@ -24,7 +24,7 @@
         <script src="https://kit.fontawesome.com/c4b1104435.js" crossorigin="anonymous"></script>
         @yield('scripts')
     </head>
-    <body class="font-sans antialiased flex overflow-auto">
+    <body class="font-sans antialiased flex overflow-y-auto">
         <div class="bg-transparent fixed z-20">
             @livewire('sidebar')
             @livewire('sidebar-toggle')

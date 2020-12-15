@@ -21,6 +21,12 @@ module.exports = {
                 'screen-1/3': '33vh',
                 'screen-1/5': '20vh',
                 'screen-1/10': '10vh',
+                'screen-3/10': '30vh',
+                'screen-7/10': '70vh',
+                'screen-9/10': '90vh',
+                'screen-2/12': '16.66666667vh',
+                'screen-8/12': '66.66666667vh',
+                'screen-10/12': '83.33333333vh',
             },
             maxWidth: {
                 '1/4': '25%',

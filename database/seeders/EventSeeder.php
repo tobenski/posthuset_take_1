@@ -5,9 +5,11 @@ namespace Database\Seeders;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class EventSeeder extends Seeder
 {
+    use WithFaker;
     /**
      * Run the database seeds.
      *
@@ -49,40 +51,7 @@ class EventSeeder extends Seeder
             'online' => true,
         ]);
 
-        Event::create([
-            'name' => 'Event nummer 2',
-            'date' => Carbon::now()->addDays(18),
-            'time' => Carbon::createFromTime(12),
-            'duration' => 120,
-            'content' => 'Beskrivelse af Event nummer 2. <br> her er linie 2.<br> her er linie 2.',
-            'online' => true,
-        ]);
+        Event::factory()->times(5)->create();
 
-        Event::create([
-            'name' => 'Event nummer 3',
-            'date' => Carbon::now()->addMonth()->addDays(12),
-            'time' => Carbon::createFromTime(13),
-            'duration' => 180,
-            'content' => 'Beskrivelse af Event nummer 3. <br>',
-            'online' => true,
-        ]);
-
-        Event::create([
-            'name' => 'Event nummer 4',
-            'date' => Carbon::now()->addMonths(2)->addDays(12),
-            'time' => Carbon::createFromTime(13),
-            'duration' => 180,
-            'content' => 'Beskrivelse af Event nummer 4. <br>',
-            'online' => true,
-        ]);
-
-        Event::create([
-            'name' => 'Event nummer 5',
-            'date' => Carbon::now()->addMonths(3)->addDays(2),
-            'time' => Carbon::createFromTime(13),
-            'duration' => 120,
-            'content' => 'Beskrivelse af Event nummer 5. <br>',
-            'online' => true,
-        ]);
     }
 }
