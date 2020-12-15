@@ -28,7 +28,7 @@ class MenuSeeder extends Seeder
         ]);
         Menu::create([
             'text' => 'Arrangementer',
-            'url' => route('home'),
+            'url' => route('arrangementer'),
             'order' => 2,
 
         ]);
@@ -38,10 +38,16 @@ class MenuSeeder extends Seeder
             'order' => 3,
 
         ]);
+        Menu::create([
+            'text' => 'Catering',
+            'url' => route('home'),
+            'order' => 4,
+
+        ]);
         $menu = Menu::create([
             'text' => 'Kontakt',
             'url' => route('home'),
-            'order' => 4,
+            'order' => 5,
 
         ]);
         $menu->children()->saveMany([
@@ -63,6 +69,12 @@ class MenuSeeder extends Seeder
                 'order' => 2,
 
             ]),
+        ]);
+
+        Menu::create([
+            'text' => 'Blog',
+            'url' => route('home'),
+            'order' => 6,
         ]);
 
     }

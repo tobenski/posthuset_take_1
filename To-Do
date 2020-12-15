@@ -1,0 +1,12 @@
+Tilføj SEO TIL:
+- Menukort
+- Arrangementer
+
+FIX SEEDER
+- Homeboxes
+
+TILFØJ VIDEO LINK / LINKS TIL SIDEN.
+- undersøg om spatie media kan håndtere det. ellers måske gøre det manuelt med 3-4 breakpoints.
+
+PAGES
+- Tilføj Menukort og arrangemneter til seederen - Det giver måske autmatisk SEO tilknytning.
