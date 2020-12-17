@@ -81,6 +81,7 @@ module.exports = {
                 'secondary': colors.gray,
                 'danger': colors.red,
                 'text': colors.white,
+                'paper': colors.yellow[50],
 
             },
             transitionDuration: {

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -25,17 +26,19 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call([
-            //MenuSeeder::class,
-            //SlideSeeder::class,
-            //PageSeeder::class,
-            //HomeBoxesSeeder::class,
-            //FrokostMenuSeeder::class,
-            //EftermiddagsMenuSeeder::class,
-            //BorneMenuSeeder::class,
-            //MenuTypeSeeder::class,
-            //AftenMenuSeeder::class,
-            //AnbefalerMenuSeeder::class,
-            //EventSeeder::class,
+            MenuSeeder::class,
+            SlideSeeder::class,
+            PageSeeder::class,
+            HomeBoxesSeeder::class,
+            FrokostMenuSeeder::class,
+            EftermiddagsMenuSeeder::class,
+            BorneMenuSeeder::class,
+            MenuTypeSeeder::class,
+            AftenMenuSeeder::class,
+            AnbefalerMenuSeeder::class,
+            EventSeeder::class,
+            CateringTypeSeeder::class,
+            CateringMenuSeeder::class,
             ]);
 
 

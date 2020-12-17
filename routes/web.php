@@ -19,6 +19,7 @@ use App\Http\Livewire\Forside;
 use App\Http\Livewire\Admin\Menus;
 use App\Http\Livewire\Admin\Pages;
 use App\Http\Livewire\Admin\Slides;
+use App\Http\Livewire\CateringMenus;
 use App\Http\Livewire\Menukort as LivewireMenukort;
 use App\Http\Livewire\Test;
 use Illuminate\Support\Facades\Route;
@@ -74,5 +75,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
 Route::get('/arrangementer/{event?}', LivewireEvents::class)->name('arrangementer');
 Route::get('/menukort', LivewireMenukort::class)->name('menukort');
+Route::get('/catering', CateringMenus::class)->name('catering');
 Route::get('/test/{event?}', Test::class)->name('test');
 Route::get('/', Forside::class)->name('home');
