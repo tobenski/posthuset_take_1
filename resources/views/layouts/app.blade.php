@@ -15,13 +15,15 @@
         <!-- Styles -->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+        @stack('mystyles')
+        @yield('styles')
         @livewireStyles
 
         <!-- Scripts -->
 
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
         <script src="https://kit.fontawesome.com/c4b1104435.js" crossorigin="anonymous"></script>
+        @stack('myscripts')
         @yield('scripts')
     </head>
     <body class="font-sans antialiased flex overflow-y-auto">
@@ -39,5 +41,6 @@
 
         @livewireScripts
 
+        @stack('bottomscripts')
     </body>
 </html>

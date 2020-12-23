@@ -29,6 +29,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'address',
+        'zip',
+        'country',
     ];
 
     /**
@@ -60,5 +64,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function cateringOrders()
+    {
+        return $this->hasMany(CateringOrder::class);
+    }
 
 }

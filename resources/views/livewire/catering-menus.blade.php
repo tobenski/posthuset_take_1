@@ -36,17 +36,19 @@
                     x-transition:leave-start="opacity-100 transform scale-100"
                     x-transition:leave-end="opacity-0 transform scale-90"
                     class="w-full md:w-1/2 lg:w-1/4">
-                    <div class="rounded shadow-lg flex flex-col bg-paper m-4 overflow-hidden">
-                        <div class="font-sche text-3xl text-center py-2">{{ $menu->title }}</div>
-                        <div class="overflow-hidden w-full h-full">
-                            @if ($menu->getFirstMedia('catering'))
-                                {{ $menu->getFirstMedia('catering')->img()->attributes(['class' => 'w-full object-cover object-center transform duration-300 hover:scale-110 h-72']) }}
-                            @else
-                                <img src="https://images.photowall.com/products/55415/burger.jpg" class="w-full object-cover object-center transform duration-300 hover:scale-110 h-72">
-                            @endif
+                    <a href="{{ route('catering.show', $menu) }}">
+                        <div class="rounded shadow-lg flex flex-col bg-paper m-4 overflow-hidden">
+                            <div class="font-sche text-3xl text-center py-2 text-black">{{ $menu->title }}</div>
+                            <div class="overflow-hidden w-full h-full">
+                                @if ($menu->getFirstMedia('catering'))
+                                    {{ $menu->getFirstMedia('catering')->img()->attributes(['class' => 'w-full object-cover object-center transform duration-300 hover:scale-110 h-72']) }}
+                                @else
+                                    <img src="https://images.photowall.com/products/55415/burger.jpg" class="w-full object-cover object-center transform duration-300 hover:scale-110 h-72">
+                                @endif
 
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>

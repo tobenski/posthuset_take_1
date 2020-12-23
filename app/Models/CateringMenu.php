@@ -29,6 +29,7 @@ class CateringMenu extends Model implements HasMedia, OrderableInterface
         'menu',
         'price',
         'min_couv',
+        'days_before',
         'order',
         'catering_type_id',
         'online',
@@ -58,5 +59,10 @@ class CateringMenu extends Model implements HasMedia, OrderableInterface
     public function cateringType()
     {
         return $this->belongsTo(CateringType::class);
+    }
+
+    public function cateringOrder()
+    {
+        return $this->hasMany(CateringOrder::class);
     }
 }

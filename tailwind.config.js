@@ -46,6 +46,7 @@ module.exports = {
                 '1/2-screen': '50vh',
                 '2/3-screen': '66vh',
                 '3/4-screen': '75vh',
+                '7/10-screen': '70vh',
             },
             zIndex: {
                 '1000': '1000',

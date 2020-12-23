@@ -22,6 +22,7 @@ class CreateCateringMenusTable extends Migration
             $table->integer('price');
 
             $table->integer('min_couv')->default(10);
+            $table->integer('days_before')->default(8);
 
             $table->unsignedInteger('order')->nullable();
 
