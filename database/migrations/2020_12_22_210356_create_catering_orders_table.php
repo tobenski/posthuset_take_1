@@ -20,9 +20,10 @@ class CreateCateringOrdersTable extends Migration
             $table->integer('count');
 
             $table->boolean('delivery');
+            $table->string('delivery_name')->nullable();
             $table->string('delivery_address')->nullable();
             $table->integer('delivery_zip')->nullable();
-            $table->integer('contact_phone')->nullable();
+            $table->string('contact_phone')->nullable();
 
 
             $table->foreignId('user_id');

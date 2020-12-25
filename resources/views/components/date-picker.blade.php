@@ -27,7 +27,6 @@
     placeholder='Vælg en Dato'
     {{ $attributes }}
 >
-@error('{{ $attributes->name }}') <span class="text-red-500">{{ $message }}</span> @enderror
 
 @push('mystyles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">

@@ -15,7 +15,6 @@
     placeholder='Tid'
     {{ $attributes }}
 >
-@error('{{ $attributes->name }}') <span class="text-red-500">{{ $message }}</span> @enderror
 
 
 

@@ -20,6 +20,7 @@ class CateringMenuOrder extends Component
     public $email;
     public $password;
     public $remember;
+    public $total;
 
     public function mount(Request $request)
     {
@@ -39,11 +40,20 @@ class CateringMenuOrder extends Component
     }
 
     protected $rules = [
-        'order.date' => 'required|date_format:d-m-Y',
-        'order.time' => 'required|date_format:H:i',
-        'order.count' => 'required|numberic',
+        'order.date' => 'required|date',
+        'order.time' => 'required',
+        'order.count' => 'required|numeric',
         'order.delivery' => '',
+        'order.delivery_name' => 'exclude_if:order.delivery,0|required|string',
+        'order.delivery_address' => 'exclude_if:order.delivery,0|required|string',
+        'order.delivery_zip' => 'exclude_if:order.delivery,0|required|numeric|between:1000,9999',
+        'order.contact_phone' => 'exclude_if:order.delivery,0|required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
     ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
     public function next()
     {
@@ -53,6 +63,24 @@ class CateringMenuOrder extends Component
     public function back()
     {
         $this->currentStep--;
+    }
+
+    public function gotoStep($step)
+    {
+        if($step < $this->currentStep) {
+            $this->currentStep = $step;
+        }
+
+    }
+
+    public function increment()
+    {
+        $this->order->count++;
+    }
+
+    public function decrement()
+    {
+        $this->order->count--;
     }
 
 
