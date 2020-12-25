@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\CateringMenu;
 use App\Models\CateringOrder;
+use App\Models\Menu;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,6 +14,7 @@ use Livewire\Component;
 class CateringMenuOrder extends Component
 {
     public CateringOrder $order;
+    public CateringMenu $menu;
     public User $user;
     public $currentStep = 1;
     public $email;
@@ -22,9 +25,12 @@ class CateringMenuOrder extends Component
     {
         $this->order = new CateringOrder;
         $this->user = new User;
-        $this->order->date = Carbon::createFromFormat('d/m-Y', $request->date)->hour(0)->minute(0)->second(0);
+        $this->order->date = Carbon::createFromFormat('d-m-Y', $request->date)->hour(0)->minute(0)->second(0);
+        $this->order->time = Carbon::now()->hour(11)->minute(30)->second(0);
         $this->order->count = $request->antal;
-        $this->order->catering_menu_id = $request->menu_id;
+        $this->order->delivery = 0;
+        $this->menu = CateringMenu::where('id', $request->menu_id)->first();
+        $this->order->cateringMenu = $this->menu;
     }
 
     public function render()
@@ -33,7 +39,10 @@ class CateringMenuOrder extends Component
     }
 
     protected $rules = [
-        'order.date' => 'required|date_format:d/m-Y',
+        'order.date' => 'required|date_format:d-m-Y',
+        'order.time' => 'required|date_format:H:i',
+        'order.count' => 'required|numberic',
+        'order.delivery' => '',
     ];
 
     public function next()
@@ -46,32 +55,6 @@ class CateringMenuOrder extends Component
         $this->currentStep--;
     }
 
-    public function login()
-    {
-        $this->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        if(Auth::attempt(array('email' => $this->email, 'password' => $this->password))){
-            $this->user = Auth::user();
-
-            session()->flash('message', "You are Login successful.");
-        }else{
-            session()->flash('login', 'email and/or password are wrong.');
-        }
-
-        $this->next();
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-    }
 
     public function submitOrder()
     {

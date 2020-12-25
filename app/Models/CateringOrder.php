@@ -33,6 +33,10 @@ class CateringOrder extends Model
         'time',
     ];
 
+    protected $casts = [
+        'delivery' => 'boolean',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -45,6 +49,18 @@ class CateringOrder extends Model
 
     public function getDateAttribute()
     {
-        return Carbon::parse($this->attributes['date'])->format('d/m-Y');
+        return Carbon::parse($this->attributes['date'])->format('d-m-Y');
     }
+
+    public function getTimeAttribute()
+    {
+        if(isset($this->attributes['time'])){
+            return Carbon::parse($this->attributes['time'])->format('H:i');
+        } else {
+            return null;
+        }
+
+    }
+
+
 }
