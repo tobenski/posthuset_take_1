@@ -85,3 +85,9 @@ Route::get('catering/{menu}', CateringMenuShow::class)->name('catering.show');
 
 Route::get('/test/{event?}', Test::class)->name('test');
 Route::get('/', Forside::class)->name('home');
+
+Route::get('/cart', function() {
+
+   Cart::sayHello();
+
+});

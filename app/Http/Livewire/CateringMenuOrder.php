@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 
@@ -58,15 +59,24 @@ class CateringMenuOrder extends Component
         'user.lastname' => 'required|string',
         'user.company' => 'nullable|string',
         'user.cvr' => 'exclude_if:user.company,null|required|numeric|between:9999999,99999999',
-        'user.email' => 'required|email',
+        'user.email' => 'required|email|unique:users,phone',
         'user.password' => 'nullable|string|min:8',
-        'user.phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+        'user.phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8|unique:users,phone',
+        'user.address' => 'required|string',
         'user.zip' => 'required|numeric|between:1000,9999',
         'user.city' => 'required|string',
+
+        // Login
+        'email' => 'required|email',
+        'password' => 'required|string|min:8',
     ];
 
     public function updated($propertyName, $value)
     {
+        if($propertyName == 'user.email') {
+            $user = User::where('email', $value)->first();
+            $this->user = $user ? $user : $this->user;
+        }
         if($propertyName == 'order.delivery_zip' && $value){
             $this->order->delivery_city = $this->getCity($value);
         }
@@ -93,6 +103,39 @@ class CateringMenuOrder extends Component
         ]);
 
         $this->next();
+    }
+
+    public function submitStepTwo()
+    {
+        $this->validate([
+            // User
+            'user.name' => 'required|string',
+            'user.lastname' => 'required|string',
+            'user.company' => 'nullable|string',
+            'user.cvr' => 'exclude_if:user.company,null|required|numeric|between:9999999,99999999',
+            'user.email' => 'required|email',
+            'user.password' => 'nullable|string|min:8',
+            'user.phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+            'user.address' => 'required|string',
+            'user.zip' => 'required|numeric|between:1000,9999',
+            'user.city' => 'required|string',
+        ]);
+
+        if(!$this->user->password){
+            $this->user->password = Hash::make('Password');
+        }
+
+        $this->user->save();
+        $this->order->cateringMenu()->associate($this->menu);
+        $this->order->user()->associate($this->user);
+        $this->order->save();
+    }
+
+    public function login()
+    {
+        $this->validate([
+
+        ]);
     }
 
     public function next()
@@ -135,6 +178,11 @@ class CateringMenuOrder extends Component
     public function clearForm()
     {
         $this->currentStep = 1;
+    }
+
+    public function addToCart(CateringOrder $order): void
+    {
+        Cart::add($order);
     }
 
     private function getCity($zip)

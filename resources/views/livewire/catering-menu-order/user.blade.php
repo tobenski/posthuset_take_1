@@ -1,7 +1,28 @@
 <div class="w-full rounded-xl bg-menu p-4 mb-6 border border-black">
     <h1 class="text-4xl font-sche font-extrabold uppercase cursor-pointer" wire:click='gotoStep(2)'>Kontakt Information</h1>
-    <div x-show="currentStep === 2" class="flex flex-col">
-        <div class="flex items-center justify-center w-full mb-6">
+    <div x-show="currentStep === 2"
+         class="flex flex-col">
+         <div class="flex items-center justify-center w-full mb-6">
+            <div class="flex flex-row items-center mx-2 w-1/2">
+                <div class="w-1/3 text-right pr-2">Email:</div>
+                <div class="w-2/3 pl-2">
+                    <input type="email" wire:model.lazy="user.email"
+                    class="@error('user.email') border-red-500 border-2 @enderror
+                    w-full px-5 leading-none h-12 rounded" />
+                    @error('user.email') <span class="text-xs text-red-500 italic">{{ $message }}</span>@enderror
+                </div>
+            </div>
+            <div class="flex items-center mx-2 w-1/2">
+                <div class="w-1/3 text-right pr-2">Telefon:</div>
+                <div class="w-2/3 pl-2">
+                    <input type="tel" wire:model.lazy="user.phone"
+                    class="@error('user.phone') border-red-500 border-2 @enderror
+                    w-full px-5 leading-none h-12 rounded" />
+                    @error('user.phone') <span class="text-xs text-red-500 italic">{{ $message }}</span>@enderror
+                </div>
+            </div>
+        </div>
+         <div class="flex items-center justify-center w-full mb-6">
             <div class="flex flex-row items-center mx-2 w-1/2">
                 <div class="w-1/3 text-right pr-2">Fornavn:</div>
                 <div class="w-2/3 pl-2">
@@ -73,7 +94,7 @@
             </div>
         </div>
         <div class="flex flex-col items-end justify-end mt-4">
-            <button wire:click="next()" class="btn btn-primary">Føj bestillingen til kurv</button>
+            <button wire:click="submitStepTwo()" class="btn btn-primary">Føj bestillingen til kurv</button>
         </div>
     </div>
 </div>

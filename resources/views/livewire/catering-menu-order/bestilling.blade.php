@@ -85,8 +85,13 @@
             </div>
 
             <div class="flex flex-col items-end justify-end mt-4">
-                <button x-show="false" wire:click="next()" class="btn btn-primary">Fortsæt</button>
-                <button type="submit" class="btn btn-primary">Fortsæt</button>
+                <button type="submit" class="btn btn-primary">
+                    @auth
+                        Føj Bestillingen til kurv
+                    @else
+                        Fortsæt
+                    @endauth
+                </button>
             </div>
         </form>
     </div>

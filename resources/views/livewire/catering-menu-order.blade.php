@@ -22,10 +22,10 @@
         <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-sche text-black leading-none">{{ __('Bestil ') . $menu->title }}</h2>
     </div>
     <div class="flex flex-col lg:flex-row justify-start lg:justify-evenly h-full min-h-screen w-full pt-8"
-         x-data="{currentStep: @entangle('currentStep'), delivery: @entangle('order.delivery') }">
+         x-data="{ currentStep: @entangle('currentStep'), delivery: @entangle('order.delivery'), show: '' }">
         <div class="w-full lg:w-8/12 h-full">
-            @include('livewire.catering-menu-order.stepone')
-            @include('livewire.catering-menu-order.steptwo')
+            @include('livewire.catering-menu-order.bestilling')
+            @include('livewire.catering-menu-order.user')
         </div>
         @include('livewire.catering-menu-order.total')
     </div>
