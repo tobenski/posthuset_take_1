@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Facades\Http;
 
 class CateringMenuOrder extends Component
 {
@@ -21,6 +22,7 @@ class CateringMenuOrder extends Component
     public $password;
     public $remember;
     public $total;
+    public $delivery_city;
 
     public function mount(Request $request)
     {
@@ -40,6 +42,7 @@ class CateringMenuOrder extends Component
     }
 
     protected $rules = [
+        // Order
         'order.date' => 'required|date',
         'order.time' => 'required',
         'order.count' => 'required|numeric',
@@ -47,12 +50,49 @@ class CateringMenuOrder extends Component
         'order.delivery_name' => 'exclude_if:order.delivery,0|required|string',
         'order.delivery_address' => 'exclude_if:order.delivery,0|required|string',
         'order.delivery_zip' => 'exclude_if:order.delivery,0|required|numeric|between:1000,9999',
+        'order.delivery_city' => 'exclude_if:order.delivery, 0|required|string',
         'order.contact_phone' => 'exclude_if:order.delivery,0|required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+
+        // User
+        'user.name' => 'required|string',
+        'user.lastname' => 'required|string',
+        'user.company' => 'nullable|string',
+        'user.cvr' => 'exclude_if:user.company,null|required|numeric|between:9999999,99999999',
+        'user.email' => 'required|email',
+        'user.password' => 'nullable|string|min:8',
+        'user.phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+        'user.zip' => 'required|numeric|between:1000,9999',
+        'user.city' => 'required|string',
     ];
 
-    public function updated($propertyName)
+    public function updated($propertyName, $value)
     {
+        if($propertyName == 'order.delivery_zip' && $value){
+            $this->order->delivery_city = $this->getCity($value);
+        }
+        if($propertyName == 'user.zip' && $value){
+            $this->user->city = $this->getCity($value);
+        }
         $this->validateOnly($propertyName);
+
+    }
+
+    public function submitStepOne()
+    {
+        $this->validate([
+            // Order
+            'order.date' => 'required|date',
+            'order.time' => 'required',
+            'order.count' => 'required|numeric',
+            'order.delivery' => '',
+            'order.delivery_name' => 'exclude_if:order.delivery,0|required|string',
+            'order.delivery_address' => 'exclude_if:order.delivery,0|required|string',
+            'order.delivery_zip' => 'exclude_if:order.delivery,0|required|numeric|between:1000,9999',
+            'order.delivery_city' => 'exclude_if:order.delivery,0|required|string',
+            'order.contact_phone' => 'exclude_if:order.delivery,0|required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+        ]);
+
+        $this->next();
     }
 
     public function next()
@@ -95,5 +135,16 @@ class CateringMenuOrder extends Component
     public function clearForm()
     {
         $this->currentStep = 1;
+    }
+
+    private function getCity($zip)
+    {
+        $response = Http::get('https://dawa.aws.dk/postnumre/' . $zip);
+        if ($response->successful()) {
+            return json_decode($response->getBody())->navn;
+        } else {
+            return '';
+        }
+
     }
 }

@@ -30,14 +30,14 @@
             {{ $order->delivery_address }}<br>
             @endif
             @if($order->delivery_zip)
-            {{ $order->delivery_zip }} "[BYNAVN]"<br>
+            {{ $order->delivery_zip }} {{ $order->delivery_city }}<br>
             @endif
             @if($order->contact_phone)
             {!! __('<b>Telefon') . ':</b> ' . $order->contact_phone !!}
             @endif
             @endif
         </div>
-        {{ $order->delivery }}
+
     </div>
     <hr class="mb-4">
         <div class="flex justify-end font-bold text-2xl p-2">

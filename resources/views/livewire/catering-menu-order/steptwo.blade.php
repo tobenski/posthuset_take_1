@@ -5,10 +5,10 @@
             <div class="flex flex-row items-center mx-2 w-1/2">
                 <div class="w-1/3 text-right pr-2">Fornavn:</div>
                 <div class="w-2/3 pl-2">
-                    <input type="text" wire:model.lazy="user.firstname"
-                    class="@error('user.firstname') border-red-500 border-2 @enderror
+                    <input type="text" wire:model.lazy="user.name"
+                    class="@error('user.name') border-red-500 border-2 @enderror
                     w-full px-5 leading-none h-12 rounded" />
-                    @error('user.firstname') <span class="text-xs text-red-500 italic">{{ $message }}</span>@enderror
+                    @error('user.name') <span class="text-xs text-red-500 italic">{{ $message }}</span>@enderror
                 </div>
             </div>
             <div class="flex items-center mx-2 w-1/2">
@@ -34,7 +34,7 @@
             <div class="flex items-center mx-2 w-1/2">
                 <div class="w-1/3 text-right pr-2">CVR:</div>
                 <div class="w-2/3 pl-2">
-                    <input type="text" wire:model.lazy="user.cvr"
+                    <input type="tel" wire:model.lazy="user.cvr"
                     class="@error('user.cvr') border-red-500 border-2 @enderror
                     w-full px-5 leading-none h-12 rounded" />
                     @error('user.cvr') <span class="text-xs text-red-500 italic">{{ $message }}</span>@enderror
@@ -52,12 +52,23 @@
                 </div>
             </div>
             <div class="flex items-center mx-2 w-1/2">
-                <div class="w-1/3 text-right pr-2">Postnummer:</div>
-                <div class="w-2/3 pl-2">
-                    <input type="tel" wire:model.lazy="user.zip"
-                    class="@error('user.zip') border-red-500 border-2 @enderror
-                    w-full px-5 leading-none h-12 rounded" />
-                    @error('user.zip') <span class="text-xs text-red-500 italic">{{ $message }}</span>@enderror
+                <div class="flex items-center mx-2 w-1/2">
+                    <div class="w-1/3 text-right pr-2">Post nr:</div>
+                    <div class="w-2/3 pl-2">
+                        <input type="tel" wire:model.lazy="user.zip"
+                        class="@error('user.zip') border-red-500 border-2 @enderror
+                        w-full px-5 leading-none h-12 rounded" />
+                        @error('user.zip') <span class="text-xs text-red-500 italic">{{ $message }}</span>@enderror
+                    </div>
+                </div>
+                <div class="flex items-center mx-2 w-1/2">
+                    <div class="w-1/3 text-right pr-2">By:</div>
+                    <div class="w-2/3 pl-2">
+                        <input type="tel" wire:model.lazy="user.city"
+                        class="@error('user.city') border-red-500 border-2 @enderror
+                        w-full px-5 leading-none h-12 rounded" />
+                        @error('user.city') <span class="text-xs text-red-500 italic">{{ $message }}</span>@enderror
+                    </div>
                 </div>
             </div>
         </div>

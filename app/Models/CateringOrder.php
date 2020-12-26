@@ -24,6 +24,7 @@ class CateringOrder extends Model
         'delivery_name',
         'delivery_address',
         'delivery_zip',
+        'delivery_city',
         'contact_phone',
         'user_id',
         'catering_menu_id',
