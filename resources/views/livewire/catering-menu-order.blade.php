@@ -4,7 +4,7 @@
             <source src="https://detgamleposthusvideo.s3.eu-north-1.amazonaws.com/front.mp4" type="video/mp4">
         </video>
     </div>
-        <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
+        <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 py-3 shadow-md my-3" role="alert">
             <div class="flex">
                 <div>
                     @foreach ($errors->all() as $message)
