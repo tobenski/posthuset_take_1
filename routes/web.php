@@ -56,7 +56,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     //Route::get('slide', Slides::class);
 
     //Route::get('page', Pages::class);
-    Route::get('menukort', Menukort::class);
+    //Route::get('menukort', Menukort::class);
 
 
     Route::resources([
