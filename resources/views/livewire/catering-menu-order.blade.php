@@ -4,17 +4,6 @@
             <source src="https://detgamleposthusvideo.s3.eu-north-1.amazonaws.com/front.mp4" type="video/mp4">
         </video>
     </div>
-        <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 py-3 shadow-md my-3" role="alert">
-            <div class="flex">
-                <div>
-                    @foreach ($errors->all() as $message)
-                        <p class="text-sm">{{ $message }}</p>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-
-
     <div class="flex flex-col w-full items-center justify-center absolute top-0 left-0 mt-2 md:mt-2">
         <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-sche text-white leading-none">{{ config('app.name') }}</h1>
     </div>

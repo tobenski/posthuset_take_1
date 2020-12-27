@@ -20,7 +20,9 @@ use App\Http\Livewire\Forside;
 use App\Http\Livewire\Admin\Menus;
 use App\Http\Livewire\Admin\Pages;
 use App\Http\Livewire\Admin\Slides;
+use App\Http\Livewire\Cart;
 use App\Http\Livewire\CateringMenuOrder;
+use App\Http\Livewire\CateringMenuOrderConfirm;
 use App\Http\Livewire\CateringMenus;
 use App\Http\Livewire\CateringMenuShow;
 use App\Http\Livewire\Menukort as LivewireMenukort;
@@ -81,13 +83,11 @@ Route::get('/arrangementer/{event?}', LivewireEvents::class)->name('arrangemente
 Route::get('/menukort', LivewireMenukort::class)->name('menukort');
 Route::get('/catering', CateringMenus::class)->name('catering');
 Route::post('/catering/order', CateringMenuOrder::class)->name('catering.order');
-Route::get('catering/{menu}', CateringMenuShow::class)->name('catering.show');
+Route::get('/catering/{menu}', CateringMenuShow::class)->name('catering.show');
+Route::get('/catering/order/confirm', CateringMenuOrderConfirm::class)->name('catering.order.confirm');
 
 Route::get('/test/{event?}', Test::class)->name('test');
 Route::get('/', Forside::class)->name('home');
 
-Route::get('/cart', function() {
+Route::get('/cart', Cart::class)->name('cart');
 
-   Cart::sayHello();
-
-});

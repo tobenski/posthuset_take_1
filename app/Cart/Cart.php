@@ -1,5 +1,5 @@
 <?php
-
+//https://lightit.io/blog/laravel-livewire-shopping-cart-demo/
 namespace App\Cart;
 
 use App\Models\CateringOrder as Product;
@@ -12,10 +12,6 @@ class Cart
             $this->set($this->empty());
     }
 
-    public function sayHello()
-    {
-        echo "Hello, from Facade class.";
-    }
 
     public function add(Product $product): void
     {

@@ -44,6 +44,12 @@ class CateringOrder extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function total()
+    {
+        // Find delivery pris ud fra zip.
+        return ($this->count * $this->cateringMenu->price) + ($this->delivery ? 150 : 0);
+    }
+
     public function cateringMenu()
     {
         return $this->belongsTo(CateringMenu::class);

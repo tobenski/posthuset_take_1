@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Cart\CartFacade;
 use App\Models\CateringMenu;
 use App\Models\CateringOrder;
 use App\Models\Menu;
@@ -125,10 +126,17 @@ class CateringMenuOrder extends Component
             $this->user->password = Hash::make('Password');
         }
 
+
+        // Prøv at sende det via session til næste view
+
         $this->user->save();
         $this->order->cateringMenu()->associate($this->menu);
         $this->order->user()->associate($this->user);
         $this->order->save();
+        request()->session()->put('order_id', $this->order->id);
+        return redirect()->to(route('catering.order.confirm'));
+        // Cart functionallity
+        //$this->addToCart($this->order);
     }
 
     public function login()
@@ -182,7 +190,7 @@ class CateringMenuOrder extends Component
 
     public function addToCart(CateringOrder $order): void
     {
-        Cart::add($order);
+        CartFacade::add($order);
     }
 
     private function getCity($zip)
