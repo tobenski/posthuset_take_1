@@ -26,9 +26,6 @@ class CreateCateringMenusTable extends Migration
 
             $table->unsignedInteger('order')->nullable();
 
-            $table->foreignId('catering_type_id');
-            $table->foreign('catering_type_id')->references('id')->on('catering_types');
-
             $table->boolean('online')->default(true);
             $table->softDeletes();
             $table->timestamps();
